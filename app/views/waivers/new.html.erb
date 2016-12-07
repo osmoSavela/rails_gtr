@@ -1,0 +1,84 @@
+<div class="row padding-bottom">
+  <div class="col-md-12">
+    <h3>ACKNOWLEDGEMENT OF RISK, RELEASE INDEMNITY AGREEMENT AND WAIVER OF LIABILITY</h3>
+    <p class='lead'>
+      EVERYONE who wishes to use this facility, whether shooting their own firearm or shooting a rental firearm MUST completely fill out this form. All information supplied will be kept strictly confidential, will NOT be distributed, sold, or made available to others for any purpose, and is for the sole use of GTR Sporting Club, LLC.
+    </p>
+
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for @waiver do |f| %>
+      <div class="form-group col-md-6">
+        <%= f.label :first_name %><br>
+        <%= f.text_field :first_name, value: @user.first_name, class: 'form-control' readonly: true %>
+      </div>
+
+      <div class="form-group col-md-6">
+        <%= f.label :last_name %><br>
+        <%= f.text_field :last_name, value: @user.last_name, class: 'form-control' readonly: true %>
+      </div>
+      <div class="form-group col-md-12">
+        <%= f.label :email %><br>
+        <%= f.email_field :email, class: 'form-control', readonly: true, value: @user.email %>
+      </div>
+
+      <div class="form-group col-md-12">
+        <%= f.label :date_of_birth %><br>
+        <%= f.text_field :date_of_birth, readonly: true, value: @user.date_of_birth, class: 'form-control'  %>
+      </div>
+
+      <div class="form-group col-md-12">
+        <%= f.label :foid_or_license, "FOID ID or license number  for non-illinois residents" %><br>
+        <%= f.text_field :foid_or_license, value: @user.foid_id, class: 'form-control' %>
+      </div>
+
+      <div class="col-md-10">
+        <p>
+          Have you ever been adjudicated as mentally defective, been committed to a mental institution, or have a history of mental illness or severe depression?
+        </p>
+      </div>
+
+      <div class="col-md-2">
+        <%= f.check_box :mental_illness %>
+      </div>
+
+      <div class="col-md-10">
+        <p>
+          Are you an unlawful user of, or addicted to marijuana, any depressant, stimulant, narcotic drug, or any other controlled substance?
+        </p>
+      </div>
+
+      <div class="col-md-2">
+        <%= f.check_box :substance_abuse %>
+      </div>
+
+      <div class="col-md-10">
+        <p>
+          Have you ever been convicted of a felony or CLASS A or B misdemeanor?
+        </p>
+      </div>
+
+      <div class="col-md-2">
+        <%= f.check_box :criminal_record %>
+      </div>
+
+      <div class="col-md-10">
+        <p>
+          Are you a U.S. Citizen or permanent resident?
+        </p>
+      </div>
+
+      <div class="col-md-2">
+        <%= f.check_box :us_citizen %>
+      </div>
+
+      <div class="col-md-12">
+        <%= f.submit 'Submit', class: 'btn btn-block btn-gtr-green' %>
+      </div>
+
+    <% end %>
+  </div>
+</div>

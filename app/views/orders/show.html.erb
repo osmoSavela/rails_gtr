@@ -1,0 +1,13 @@
+<div class='container'>
+  <div class='col-md-6 col-md-offset-3 well'>
+      <h3 class='gray no-margin-top text-center'>Your order has been confirmed!</h3>
+      <h2 class='black'>Order #<%= @order.id %></h2>
+      <% @order_items.each do |item| %>
+        <h4 class='dark-green'><%= item.menu_item.name %> x <%= item.quantity %><span class='pull-right'><%= number_to_currency(item.price*item.quantity) %></span></h4>
+      <% end %>
+      <p class='border-bottom-gray'></p>
+      <h3 class='black'>Total: <span class='pull-right'><%= number_to_currency(@order.total_price) %></span></h3>
+
+
+  </div>
+</div>

@@ -1,0 +1,30 @@
+<div class='container'>
+    <h1 class='text-center'>Frankie's Cafe</h1>
+    <br>
+    <br>
+  <div class='col-md-12'>
+      <div class='col-md-10 col-md-offset-1'>
+        <% @menu_categories.each do |category| %>
+                <h2 class='orange'><%= category.name %> </h2>
+
+                 <ul class='menu-item-list bulletless'>
+                    <% category.menu_items.each do |item| %>
+                      <li id='menu_item_<%= item.id %>'>
+                        <b><%= item.name %> - <span class='green'><%= number_to_currency(item.price) %></span></b>
+
+                          <%#= link_to '<i class="fa fa-plus"></i> Add to Order'.html_safe, new_order_item_url(menu_item_id: item.id), remote: true, class: 'btn btn-gtr-green btn-xs' %>
+
+                          <br>
+                        <span class='gray'><%= item.description %></span>
+                      </li>
+                    <% end %>
+                  </ul>
+        <% end %>
+      </div>
+  </div>
+
+    <!-- <div class='col-md-4 well'>
+      <h3 class='gray no-margin-top text-center'>My Order</h3>
+        <%#= render 'order_area' %>
+    </div> -->
+</div>

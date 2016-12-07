@@ -1,0 +1,112 @@
+<div class='container'>
+
+	<div class="row">
+		<h2>Gun Ranges and Reservations</h2>
+		<div class='col-md-2'>
+			<div class='col-md-12 admin-dash-btn text-center'>
+					<%= link_to '<i class="fa fa-crosshairs admin-dash-icon"></i> <br> Gun <br> Ranges'.html_safe, admin_gun_ranges_url, class: 'white' %>
+			</div>
+		</div>
+
+		<div class='col-md-2'>
+			<div class='col-md-12 admin-dash-btn text-center'>
+				<%= link_to '<i class="fa fa-clock-o admin-dash-icon"></i> <br> Manage Reservations'.html_safe, admin_master_reservations_url, class: 'white', "data-no-turbolink" => true %>
+			</div>
+		</div>
+
+
+		<div class='col-md-2'>
+			<div class='col-md-12 admin-dash-btn text-center'>
+				<%= link_to "<i class='fa fa-tag admin-dash-icon'></i> <br>Today's<br> Reservations".html_safe, todays_reservations_url, class: 'white' %>
+			</div>
+		</div>
+
+	</div>
+
+
+
+	<div class="row">
+		<h2>GTR Training Institute</h2>
+
+		<div class='col-md-2'>
+			<div class='col-md-12 admin-dash-btn text-center'>
+				<%= link_to '<i class="fa fa-connectdevelop admin-dash-icon"></i> <br> Manage Classes'.html_safe, admin_training_classes_url, class: 'white', "data-no-turbolink" => true %>
+			</div>
+		</div>
+
+		<div class='col-md-2'>
+			<div class='col-md-12 admin-dash-btn text-center'>
+				<%= link_to '<i class="fa fa-calendar admin-dash-icon"></i> <br> Manage Schedule'.html_safe, admin_training_sessions_url, class: 'white', "data-no-turbolink" => true %>
+			</div>
+		</div>
+
+		<div class='col-md-2'>
+			<div class='col-md-12 admin-dash-btn text-center'>
+				<%= link_to '<i class="fa fa-list admin-dash-icon"></i> <br> Manage <br> Instructors'.html_safe, admin_instructors_url, class: 'white' %>
+			</div>
+		</div>
+
+		<div class='col-md-2'>
+			<div class='col-md-12 admin-dash-btn text-center'>
+				<%= link_to '<i class="fa fa-gift admin-dash-icon"></i> <br>Deluxe<br> Packages'.html_safe, admin_deluxe_packages_url, class: 'white' %>
+			</div>
+		</div>
+
+	</div>
+
+	<div class="row">
+		<h2>Users and Membership</h2>
+
+		<div class='col-md-2'>
+			<div class='col-md-12 admin-dash-btn text-center'>
+				<%= link_to '<i class="fa fa-users admin-dash-icon"></i> <br> View <br> Users'.html_safe, admin_users_url, class: 'white' %>
+			</div>
+		</div>
+
+		<div class='col-md-2'>
+			<div class='col-md-12 admin-dash-btn text-center'>
+				<%= link_to '<i class="fa fa-black-tie admin-dash-icon"></i> <br> View <br> Members'.html_safe, admin_member_list_url, class: 'white' %>
+			</div>
+		</div>
+
+		<div class='col-md-2'>
+			<div class='col-md-12 admin-dash-btn text-center'>
+					<%= link_to '<i class="fa fa-shield admin-dash-icon"></i> <br> Manage <br> Memberships'.html_safe, admin_memberships_url, class: 'white' %>
+			</div>
+		</div>
+
+	</div>
+
+	<div class="row">
+		<h2>Events, Announcements, and Homepage Video</h2>
+
+		<div class='col-md-2'>
+			<div class='col-md-12 admin-dash-btn text-center'>
+				<%= link_to '<i class="fa fa-bullhorn admin-dash-icon"></i> <br> Manage <br> Alerts'.html_safe, admin_announcements_url, class: 'white' %>
+			</div>
+		</div>
+
+		<div class='col-md-2'>
+			<div class='col-md-12 admin-dash-btn text-center'>
+				<%= link_to '<i class="fa fa-ticket admin-dash-icon"></i> <br> Manage <br> Events'.html_safe, admin_events_url, class: 'white' %>
+			</div>
+		</div>
+
+		<div class='col-md-2'>
+			<div class='col-md-12 admin-dash-btn text-center'>
+				<%= link_to '<i class="fa fa-video-camera admin-dash-icon"></i> Homepage Video'.html_safe, admin_change_homepage_video_url, class: 'white' %>
+			</div>
+		</div>
+	</div>
+
+	<div class='row padding-top padding-bottom'>
+		<h2>Frankie's Cafe</h2>
+
+		<div class='col-md-2'>
+			<div class='col-md-12 admin-dash-btn text-center'>
+				<%= link_to '<i class="fa fa-coffee admin-dash-icon"></i> <br> Manage <br> Cafe'.html_safe, admin_franks_cafe_url, class: 'white' %>
+			</div>
+		</div>
+
+	</div>
+</div>

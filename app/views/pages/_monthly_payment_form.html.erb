@@ -1,0 +1,46 @@
+<%= form_for @payment do |f| %>
+    <div>
+      <p id="stripe_error" class="text-danger">
+        <noscript>JavaScript is not enabled and is required for this form. First enable it in your web browser settings.</noscript>
+        <% if @payment.errors[:base].present? %>
+          <span class="help-block has-error"><%= @payment.errors[:base].join(', ') %></span>
+        <% end %>
+      </p>
+    </div>
+
+      <%= hidden_field_tag :frequency, nil, value: @frequency %>
+      <%= f.hidden_field :amount, value: @amount*100 %>
+      <%= f.hidden_field :user_id, value: current_user.id %>
+      <%= f.hidden_field :stripe_card_token %>
+      <%= hidden_field_tag :membership_id, nil, value: @membership.id %>
+
+     <div class="form-group col-md-12 no-pad">
+        <%= label_tag :name, "Name on Card" %>
+        <%= text_field_tag :name, nil, name: nil, class: 'form-control input-lg' %>
+    </div>
+
+    <div class="form-group col-md-9 no-pad-left">
+        <%= label_tag :card_number, "Credit Card Number " %>
+        <%= text_field_tag :card_number, nil, name: nil, class: 'form-control input-lg' %>
+    </div>
+
+    <div class="form-group col-md-3 no-pad">
+        <%= label_tag :card_code, "CVV" %>
+        <%= text_field_tag :card_code, nil, name: nil, class: 'form-control input-lg' %>
+    </div>
+
+      <div class='col-md-6 no-pad form-group'>
+      <%= label_tag :card_month, "Card Expiration" %>
+        <%= select_month nil, {add_month_numbers_true: true}, {name: nil, id: "card_month", class: 'form-control input-lg'} %>
+      </div>
+      <div class=' col-md-6 no-pad-right form-group' style='padding-top:25px;'>
+        <%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+15}, {name: nil, id: "card_year", class: 'form-control input-lg'}%>
+      </div>
+
+    <h1 class='white'>Total: <span class='pull-right'><%= number_to_currency(@amount) %></span></h1>
+
+
+    <div class="form-group">
+      <%= f.submit "Register", class: 'btn btn-lg btn-gtr-green pull-right' %>
+    </div>
+<% end %>

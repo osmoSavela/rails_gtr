@@ -1,0 +1,33 @@
+<%= form_for [:admin,@event] do |f| %>
+  <div class="form-group">
+    <%= f.label :title %><br>
+    <%= f.text_field :title, class: 'form-control', placeholder: 'Event title' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :event_start_date %><br>
+    <%= f.text_field :event_start_date, class: 'datepicker form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :event_end_date %><br>
+    <%= f.text_field :event_end_date, class: 'datepicker form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :event_start_time %><br>
+    <%= f.text_field :event_start_time, class: 'timepicker form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :event_end_time %><br>
+    <%= f.text_field :event_end_time, class: 'timepicker form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :description %><br>
+    <%= f.text_area :description, class: 'form-control', placeholder: 'Type the event description here...', rows: '6' %>
+  </div>
+
+  <%= f.submit 'Save', class: 'btn btn-gtr-green' %>
+<% end %>

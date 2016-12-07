@@ -1,0 +1,79 @@
+<div class="row padding-bottom">
+  <div class="col-md-10 col-md-offset-1">
+    <h2 class='green'>Upcoming Reservations <%= link_to 'Create a Reservation <i class="fa fa-plus"></i>'.html_safe, admin_select_range_url, class: 'btn btn-gtr-green' %></h2>
+    <br>
+
+    <div class='col-md-7 no-pad'>
+      <h3 style='margin-top: 5px;'><%= @day %></h3>
+    </div>
+
+    <%= form_tag admin_master_reservations_url, method: "get" do  %>
+      <div class='col-md-3 no-pad'>
+       <%= text_field_tag :date, nil, class: 'datepicker form-control' %>
+      </div>
+
+      <div class='col-md-2 no-pad-right'>
+       <%= submit_tag "Search by Day", class: 'btn btn-gtr-green btn-block' %>
+      </div>
+    <% end %>
+    <br>
+    <br>
+    <table class='table table-bordered'>
+      <th>
+        Date and Time
+      </th>
+      <th>
+        Shooter
+      </th>
+      <th>
+        Range and Lane
+      </th>
+      <th>
+        Gun Type
+      </th>
+      <th>
+        Guests
+      </th>
+      <th>
+        Checked In?
+      </th>
+
+      <th>
+        Paid?
+      </th>
+
+      <tbody>
+        <% @master_reservations.each do |r| %>
+          <tr width='10%'>
+            <td>
+              <%= r.day %><br>
+              <% r.reservations.each do |x| %>
+                <%= x.reservation_time.strftime("%I:%M %p") %> - <%= (x.reservation_time + 30.minutes).strftime("%I:%M %p") %><br>
+              <% end %>
+            </td>
+            <td>
+              <%= r.user.full_name %>
+            </td>
+            <td>
+              <%= r.range_and_lane %>
+            </td>
+            <td>
+              <%= r.gun_type %>
+            </td>
+            <td>
+              <%= r.number_of_guests %>
+            </td>
+
+            <td>
+              <%= r.checked_in %>
+            </td>
+
+             <td>
+              <%= r.paid? %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

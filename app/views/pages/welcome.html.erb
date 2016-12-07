@@ -1,0 +1,84 @@
+<div id='upper-content'>
+	<div class='container'>
+		<div class="row padding-bottom">
+			<div class='col-md-5'>
+				<!-- <div class='col-md-12' id='coming-soon'>
+					<p  id='coming-soon-text' class='text-center jumbo'><span class='green'>Video</span><br>Coming Soon</p>
+				</div> -->
+
+				<iframe width="475" height="364" src="<%= @url %>" frameborder="0" allowfullscreen></iframe>
+
+			</div>
+
+			<div class='col-md-7' id='pistol'>
+				<div class='col-md-12'>
+					<h1 class='best-in-class'>Not just the best gun club in our class, the only!</h1>
+					<ul id='main-list' class='unstyled'>
+						<li><%= image_tag 'yellow_bullseye.png' %> State-of-the-Art Indoor Range</li>
+						<li><%= image_tag 'green_bullseye.png' %> New and Used Firearm Sales</li>
+						<li><%= image_tag 'yellow_bullseye.png' %> Factory Trained Armorer</li>
+						<li><%= image_tag 'green_bullseye.png' %> Firearm Storage Vault</li>
+						<li><%= image_tag 'yellow_bullseye.png' %> High-Tech Training Facility and Classrooms</li>
+						<li><%= image_tag 'green_bullseye.png' %> VIP Lounge w/ Large Screen T.Vs and Topshelf Table Service</li>
+						<li><%= image_tag 'yellow_bullseye.png' %> Food and Snack Bar</li>
+					</ul>
+					<% if current_user %>
+						<%= link_to 'Book a Class', training_sessions_url, "data-no-turbolink" => true, class: 'btn btn-gtr-green' %> <%= link_to 'Reserve a Lane', gun_ranges_url, "data-no-turbolink" => true, class: 'btn btn-gtr-green' %>
+					<% else %>
+						<%= link_to 'Register', new_user_registration_path, "data-no-turbolink" => true, class: 'btn btn-gtr-green' %> <%= link_to 'Sign In', new_user_session_url, "data-no-turbolink" => true, class: 'btn btn-gtr-green' %>
+					<% end %>
+
+					<%= link_to 'News & Events', events_url, "data-no-turbolink" => true, class: 'btn btn-gtr-orange' %>
+					<%= link_to image_tag('fb.png', width: '35px', style: 'vertical-align: bottom'), "https://www.facebook.com/gtrsportingclub", target: '_blank' %>
+					<%= link_to image_tag('instagram.png', width: '35px', style: 'vertical-align: bottom'), "https://www.instagram.com/gtr_sportingclub_/", target: '_blank' %>
+					<%= link_to image_tag('youtube.png', width: '35px', style: 'vertical-align: bottom'), "http://www.youtube.com/channel/UCotG8kjjenqjVgeO239_Wfg", target: '_blank' %>
+					<%= link_to image_tag('twitter.png', width: '35px', style: 'vertical-align: bottom'), "https://www.twitter.com/gtrsporting", target: '_blank' %>
+
+				</div>
+			</div>
+		</div>
+
+		<div class="row padding-top">
+			<center>
+
+			</center>
+		</div>
+	</div>
+	<div id='dark-gray-overlay'>
+		<div class='container'>
+			<div class='row'>
+				<div class='col-md-12'>
+					<h1 class='green jumbo thin text-center'>"Your Premier Shooting Destination"</h1>
+					<p class='lead text-center'>GTR Sporting Club in Waukegan, Illinois is the Premier indoor shooting range on the North Shore of Chicago. With 22 lanes, state of the art technology, and comfortable surroundings, it's the only destination for the shooting enthusiast!</p>
+				</div>
+			</div>
+
+			<div class='row padding-top padding-bottom'>
+				<div class='col-md-3'>
+					<div class='col-md-12 box-content' id='facilities'>
+						<h3 class='green text-center bottom'><%= link_to 'View Facilities', about_url, "data-no-turbolink" => true, class: 'green' %></h3>
+					</div>
+				</div>
+
+				<div class='col-md-3'>
+					<div class='col-md-12 box-content' id='memberships'>
+						<h3 class='green text-center bottom'><%= link_to 'Memberships', "/about#memberships-section", class: 'green', "data-no-turbolink" => true %></h3>
+					</div>
+				</div>
+
+				<div class='col-md-3'>
+					<div class='col-md-12 box-content' id='book-a-lane'>
+						<h3 class='green text-center bottom'><%= link_to "Book a Lane", gun_ranges_url, class: 'green', 'data-no-turbolink' => true %></h3>
+					</div>
+				</div>
+
+				<div class='col-md-3'>
+					<div class='col-md-12 box-content' id='training-classes'>
+						<h3 class='green text-center bottom'><%= link_to 'Training Classes', training_sessions_url, class: 'green', "data-no-turbolink" => true %></h3>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</div>

@@ -1,0 +1,8 @@
+<%= form_for [:admin, @gun_range] do |f| %>
+  <div class='form-group'>
+    <%= f.label :name %><br>
+    <%= f.text_field :name, class: 'form-control', placeholder: 'Name' %>
+  </div>
+
+  <%= f.submit 'Save Range', class: 'btn btn-gtr-green pull-right' %>
+<% end %>

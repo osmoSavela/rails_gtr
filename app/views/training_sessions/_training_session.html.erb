@@ -1,0 +1,26 @@
+<div class='row'>
+	<div class='col-md-12'>
+		<h3><%= @training_session.training_class.name %></h3>
+		<h4>Taught by: <%= link_to @training_session.instructor.full_name %></h4>
+		<p><%= @training_session.training_class.description %></p>
+		<ul>
+			<li class='orange'><%= "FOID Required" if @training_session.training_class.foid_required %></li>
+		</ul>
+	</div>	
+</div>
+
+<div class='row'>
+	<div class='col-md-6'>
+		<h4 class='green'>Equipment Requirements</h4>
+		<% if @training_session.training_class.equipment_requirement.present? %>
+			<p><%= @training_session.training_class.equipment_requirement %></p>
+		<% else %>
+			<p>None</p>
+		<% end %>
+	</div>
+
+	<div class='col-md-6'>
+		<h4 class='green'>Credential Requirements</h4>
+		<p><%= @training_session.training_class.credential_requirement %></p>
+	</div>
+</div>

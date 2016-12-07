@@ -1,0 +1,43 @@
+<div class='row padding-bottom'>
+
+    <%= render 'user_sidebar' %>
+
+    <div class="col-md-8">
+      <div class="col-md-12">
+      <h1 class='green'>Reservations</h1>
+
+      <table class='table table-bordered'>
+        <thead>
+          <th>ID</th>
+          <th>Date</th>
+          <th>Time Booked</th>
+          <th>Gun Range</th>
+          <th>Lane</th>
+          <th>Gun Type</th>
+          <th>Paid</th>
+          <th>Payment Method</th>
+
+
+
+        </thead>
+
+        <tbody>
+          <% @reservations.each do |reservation| %>
+            <tr>
+              <td width='5%'><%= reservation.master_reservation.id %></td>
+              <td><%= reservation.day.strftime("%m/%d/%y") %></td>
+
+              <td> <%= reservation.reservation_time.strftime("%l:%M %p") %> - <%= (reservation.reservation_time + 30.minutes).strftime("%l:%M %p") %></td>
+              <td><%= reservation.gun_range.name %></td>
+              <td width='5%'><%= reservation.lane.number %></td>
+              <td><%= reservation.master_reservation.gun_type %></td>
+              <td><%= reservation.master_reservation.paid %></td>
+              <td><%= reservation.master_reservation.payment_method %></td>
+
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+   </div>
+  </div>
+</div>

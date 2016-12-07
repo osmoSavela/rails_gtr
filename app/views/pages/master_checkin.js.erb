@@ -1,0 +1,7 @@
+$('.modal-body').text('');
+$('#myModal').modal('show')
+$('.modal-title').text('Check In');
+$('.modal-body').append('<%= j(render('checkin_form')) %>');
+
+
+

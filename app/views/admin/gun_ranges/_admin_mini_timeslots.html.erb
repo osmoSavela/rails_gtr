@@ -1,0 +1,18 @@
+<div class='col-md-4'>
+  <div class='col-md-12 schedule-well'>
+    <%  if @date <= Date.today && timeslot < Time.zone.now %>
+      <!--Past Time -->
+      <p class='text-muted no-margin-top no-margin-bottom'> <i class='fa fa-times'></i> <%= timeslot.strftime("%I:%M %p") %></p>
+    <% else %>
+      <% if lane.reservations.are_made_for_time(lane, @gun_range, @date.to_date , timeslot) %>
+          <!-- Time is booked -->
+          <p class=' text-muted no-margin-top no-margin-bottom'> <i class='fa fa-times'></i> <%= timeslot.strftime("%I:%M %p") %></p>
+      <% else %>
+        <center>
+          <p class='green no-margin-top no-margin-bottom'><%= timeslot.strftime("%I:%M %p") %> <span></p>
+
+        </center>
+      <% end %>
+    <% end %>
+  </div>
+  </div>

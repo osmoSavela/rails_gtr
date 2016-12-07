@@ -1,0 +1,3 @@
+$('#myModal').modal('show');
+$('.modal-title').text('Viewing Session #<%= @training_session.id %>');
+$('.modal-body').html('<%= j(render('training_session')) %>');

@@ -1,0 +1,102 @@
+<div id='about-section'>
+	<div class='container'>
+		<div class='row  border-top-white padding-top padding-bottom'>
+			<div class='col-md-4'>
+				<br>
+				<br>
+				<%= render 'carousel' %>
+			</div>
+			<div class='col-md-8'>
+				<h1 class='green'>Our Facilities</h1>
+				<p class='lead'>GTR has custom made ventilation systems utilizing the finest technology available, unparalleled in the shooting industry. It provides a clear range with no gunpowder residue, coupled with shredded rubber backstops over bulletproof plates, ensuring no lead dust whatsoever. There is no recycled air, ensuring clear and clean shooting facilities. In addition, there are <em class='green'>22 state-of-the-art lanes</em> including touch screens and advanced targeting with 8 lanes set up for full tactical training and certification!
+				<br>
+				<br>
+
+			</p>
+			</div>
+		</div>
+
+		<div class='row padding-bottom padding-top border-top-white'>
+			<div class='col-md-8'>
+				<h1 class='green'>Our Team</h1>
+				<p class='lead'>GTR is comprised of a multitude of professionals, geared specifically for gun ranges and offering a variety of teaching techniques.
+				<br>
+				<br>
+				<%= link_to 'View Our Instructors', instructors_url, class: 'btn btn-gtr-orange btn-lg' %>
+			</p>
+			</div>
+			<div class='col-md-4 padding-top'>
+				<%= image_tag('class.jpg', class: 'img-responsive about') %>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id='membership-section' class='thick-green-border-top'>
+	<div class='container'>
+		<div class='row padding-top'>
+			<div class='col-md-12'>
+				<h1 class='green'>Range Prices</h1>
+			</div>
+			<div class='col-md-3'>
+				<h2 class='orange'>Handgun</h2>
+				<p class='lead'><b>Member:</b> $20 / hour</p>
+				<p class='lead'><b>Non-Member:</b> $22 / hour</p>
+			</div>
+
+			<div class='col-md-2' id='m1'>
+
+			</div>
+
+			<div class='col-md-3 col-md-offset-1'>
+				<h2 class='orange'>Long Gun</h2>
+				<p class='lead'><b>Member:</b> $22 / hour</p>
+				<p class='lead'><b>Non-Member:</b> $24 / hour</p>
+			</div>
+
+			<div id='m4' class='col-md-2'>
+
+			</div>
+
+		</div>
+
+		<div id='memberships-section' class='row'>
+			<div class='col-md-12'>
+				<h1 class='green padding-bottom'>Membership Information</h1>
+				<p class='lead'>Click the Details Button in each membership category to learn more about each Membership Category and select the membership that best suits your needs!</p>
+			</div>
+
+		</div>
+		<% @memberships.each_slice(4) do |slice| %>
+		<div class='row padding-top padding-bottom'>
+			<% slice.each do |membership| %>
+			<div class='col-md-3'>
+				<div class='col-md-12 pricing-well no-pad'>
+					<h3 style='color: <%= membership.hex_color %>' class='text-center'><%= membership.name %> <small><%= link_to '<i class="fa fa-question-circle"></i>'.html_safe, show_membership_details_url(membership_id: membership.id), remote: true %></small></h3>
+					<%= render 'membership_guts', membership: membership %>
+
+					<center>
+						<h1 class='orange'><%= number_to_currency(membership.annual_price) %></h1>
+						<p class='lead orange'>or <%= number_to_currency(membership.monthly_price) %> / month</p>
+
+						<% if membership.name == 'Patriot' %>
+							Visit GTR for more details.
+						<% else %>
+							<div class='col-md-12'>
+								<%= link_to '<i class="fa fa-tag"></i> Pay Annually<br>(2 months free)'.html_safe, apply_url(membership: membership.name, frequency: 'annual'), class: 'btn btn-gtr-green btn-lg btn-block', 'data-no-turbolink' => true %>
+							</div>
+							<div class='col-md-12 small-margin-top'>
+								<%= link_to 'Pay Monthly', apply_url(membership: membership.name, frequency: 'monthly'), class: 'btn btn-gtr-orange btn-block', 'data-no-turbolink' => true %>
+							</div>
+						<% end %>
+
+
+					</center>
+
+				</div>
+			</div>
+			<% end %>
+		</div>
+		<% end %>
+	</div>
+</div>

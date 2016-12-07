@@ -1,0 +1,16 @@
+<div id='order-area'>
+          <% if @new_items.present? %>
+            <% @new_items.each do |item| %>
+            <li id='order_item_<%= item.id %>' class='bulletless'>
+              <h4 class='dark-green'><small><%= link_to '<i class="fa fa-trash-o"></i>'.html_safe, order_item_url(item), method: 'delete', remote: true, class: 'text-danger' %></small> <%= item.menu_item.name %>  x <%= item.quantity %> <span class='pull-right'><%= number_to_currency(item.price * item.quantity) %></span></h4>
+            </li>
+            <% end %>
+            <p class='border-bottom-gray'></p>
+            <h3 class='black'>Total: <span id='order-total' class='pull-right'><%= number_to_currency(@new_items.map{|i| i.total_price}.inject(:+)) %></span></h3>
+            <%= link_to "Pay With Cash", confirm_order_url(payment_method: 'cash'), class: 'btn btn-gtr-green btn-block btn-lg', 'data-no-turbolink' => true %>
+            <%= link_to "Pay With Card", confirm_order_url(payment_method: 'card'), class: 'btn btn-gtr-green btn-block btn-lg', 'data-no-turbolink' => true %>
+
+          <% else %>
+            <h3 class='black text-center'>No Items Yet!</h3>
+          <% end %>
+        </div>

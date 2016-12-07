@@ -1,0 +1,72 @@
+<%= form_for [:admin,@user] do |f| %>
+  <div class='form-group col-md-6 no-pad-left'>
+    <%= f.label :first_name %>
+    <%= f.text_field :first_name, class: 'form-control' %>
+  </div>
+
+  <div class='form-group col-md-6 no-pad'>
+    <%= f.label :last_name %>
+    <%= f.text_field :last_name, class: 'form-control' %>
+  </div>
+
+  <div class='form-group'>
+    <%= f.label :email %>
+    <%= f.text_field :email, class: 'form-control' %>
+  </div>
+
+
+  <div class='form-group'>
+    <%= f.label :foid_or_license %>
+    <%= f.text_field :foid_or_license, placeholder: 'FOID ID or License #', class: 'form-control' %>
+  </div>
+
+
+  <div class='form-group'>
+    <%= f.label :address1, "Address" %>
+    <%= f.text_field :address1, class: 'form-control' %>
+  </div>
+
+  <div class='form-group'>
+    <%= f.label :address2, "Address2" %>
+    <%= f.text_field :address2, class: 'form-control' %>
+  </div>
+
+  <div class='form-group col-md-4 no-pad-left'>
+    <%= f.label :city %>
+    <%= f.text_field :city, class: 'form-control' %>
+  </div>
+  <div class='form-group col-md-4 no-pad-left'>
+    <%= f.label :state %>
+    <%= f.select :state, options_for_select(us_states, @user.state), prompt: 'Select State', class: 'form-control' %>
+  </div>
+   <div class='form-group col-md-4 no-pad'>
+    <%= f.label :zip %>
+    <%= f.number_field :zip, step: 1, class: 'form-control' %>
+  </div>
+
+   <div class='form-group col-md-6 no-pad-left'>
+    <%= f.label :phone, "Phone Number" %>
+    <%= f.number_field :phone, step: 1, class: 'form-control' %>
+  </div>
+
+   <div class='form-group col-md-6 no-pad'>
+    <%= f.label :membership_id %>
+    <%= f.collection_select :membership_id, Membership.all, :id, :name , prompt: 'Select Membership', class: 'form-control' %>
+  </div>
+
+  <div class='form-group col-md-6 no-pad-left'>
+    <%= f.label :hours_available, "Range Hours Available" %>
+    <%= f.number_field :hours_available, class: 'form-control' %>
+  </div>
+
+   <div class='form-group col-md-6 no-pad'>
+    <%= f.label :guests_left, "Range Guest Passes Left" %>
+    <%= f.number_field :guests_left, class: 'form-control' %>
+  </div>
+
+
+
+  <%= f.submit 'Save', class: 'btn btn-gtr-green' %>
+  <br>
+  <br>
+<% end %>

@@ -1,0 +1,78 @@
+<div class='container'>
+  <div class="row padding-bottom">
+    <%= render 'user_sidebar' %>
+
+    <div class="col-md-8">
+      <div class="col-md-10 col-md-offset-1">
+        <div class='col-md-12'>
+          <h2>Edit Information</h2>
+        </div>
+
+        <%= form_for @user do |f| %>
+          <div class="col-md-6 form-group">
+            <%= f.label :first_name %><br>
+            <%= f.text_field :first_name, class: 'form-control' %>
+          </div>
+
+          <div class="col-md-6 form-group">
+            <%= f.label :last_name %><br>
+            <%= f.text_field :last_name, class: 'form-control' %>
+          </div>
+
+          <div class="form-group col-md-6">
+            <%= f.label :email %><br>
+            <%= f.email_field :email, class: 'form-control' %>
+          </div>
+
+          <div class="form-group col-md-6">
+            <%= f.label :cell_phone %><br>
+            <%= f.email_field :cell_phone, class: 'form-control', placeholder: 'Cell Phone' %>
+          </div>
+
+          <div class="form-group col-md-6">
+            <%= f.label :work_phone %><br>
+            <%= f.email_field :work_phone, class: 'form-control', placeholder: 'Work Phone' %>
+          </div>
+
+          <div class="form-group col-md-6">
+            <%= f.label :foid_id, 'FOID ID (Illinois residents only)' %><br>
+            <%= f.text_field :foid_id, class: 'form-control', placeholder: 'FOID ID' %>
+          </div>
+
+
+          <div class="form-group col-md-12">
+            <%= f.label :address1 %><br>
+            <%= f.text_field :address1, class: 'form-control', placeholder: 'Address Line 1' %>
+          </div>
+
+          <div class="form-group col-md-12">
+            <%= f.label :address2 %><br>
+            <%= f.text_field :address2, class: 'form-control', placeholder: 'Address Line 2' %>
+          </div>
+
+          <div class="form-group col-md-5">
+            <%= f.label :city %><br>
+            <%= f.text_field :city, class: 'form-control', placeholder: 'City' %>
+          </div>
+
+          <div class="form-group col-md-4 no-pad-left">
+            <%= f.label :state %><br>
+            <%= f.select :state, options_for_select(us_states, @user.state), prompt: 'Select State', class: 'form-control' %>
+          </div>
+
+          <div class="form-group col-md-3 no-pad-left">
+            <%= f.label :zip %><br>
+            <%= f.text_field :zip, class: 'form-control', placeholder: 'Zip' %>
+          </div>
+
+          <div class="col-md-12">
+            <%= f.submit 'Save', class: 'btn btn-gtr-green' %>
+          </div>
+
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+
+</div>

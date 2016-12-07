@@ -1,0 +1,24 @@
+<h4 class='green'><%= link_to "Can't find user in system? Click here.", admin_create_reservation_url(gun_range_id: @gun_range.id, lane_id: @lane.id, date: @date, timeslots: @times, gun_type: @gun_type, new_user: true) %></h4>
+<%= form_for [:admin, @master_reservation] do |f| %>
+  <%= hidden_field_tag :gun_range_id, nil, value: @gun_range.id %>
+  <%= hidden_field_tag :lane_id, nil, value: @lane.id %>
+  <%= hidden_field_tag :date, nil, value: @date %>
+  <%= hidden_field_tag :timeslots, nil, value: @times %>
+  <%= f.hidden_field :gun_type, value: @gun_type %>
+    <div class='form-group'>
+      <%= f.label :user_email, "Last Name" %>
+      <%= f.text_field :user_email, data: {autocomplete_source: admin_users_url}, class: 'form-control', placeholder: 'Search by last name...' %>
+    </div>
+
+    <div class='form-group'>
+      <%= f.label :payment_method %>
+      <%= f.select :payment_method, options_for_select(["Pay in Store", "Credit Card"]), class: 'form-control' %>
+    </div>
+
+    <div class='form-group'>
+      <%= f.check_box :paid %>
+      <%= f.label :paid %>
+    </div>
+
+    <%= f.submit 'Save', class: 'btn btn-gtr-green' %>
+<% end %>

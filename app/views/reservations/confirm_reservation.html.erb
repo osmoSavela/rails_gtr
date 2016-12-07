@@ -1,0 +1,140 @@
+<div class='row'>
+  <div class='col-md-12'>
+    <div class='alert alert-gtr lead text-center'><i class='fa fa-exclamation-circle'></i> Please note that reservations are made in 30 minute blocks.  If you would like to reserve a lane for longer, please go back and select more times.</div>
+
+    <%= link_to "<i class='fa fa-angle-double-left'></i> Back to available times".html_safe, gun_range_lane_url(@gun_range, @lane, date: @date) %>
+  </div>
+</div>
+
+  <div class='col-md-6 no-pad-left'>
+    <h2>Confirm Reservation</h2>
+    <table class='table table-bordered'>
+      <thead>
+        <th>Range</th>
+        <th>Lane</th>
+        <th>Date</th>
+        <th>Time</th>
+        <th>
+          Number of Guests
+        </th>
+
+      </thead>
+
+      <tbody>
+        <% @times.each do |time| %>
+          <tr>
+            <td><%= @gun_range.name %></td>
+            <td><%= @lane.number %></td>
+            <td><%= @date.strftime("%m/%d/%y") %></td>
+            <td><%= time.strftime("%I:%M %p") %> - <%= (time + 30.minutes).strftime("%I:%M %p") %></td>
+            <td>
+              <%= @number_of_guests %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <% if current_user.hours_available > 0 %>
+    <div class='col-md-6'>
+      <p class='lead'>
+        This reservation will reduce your available membership hours by <span class='orange'><%= (@times.count.to_i / 2.00).to_d.round(2) %> hour(s)</span> and guest passes by <span class="orange"><%= @number_of_guests %> guests</span>. Please contact GTR Sport for further information.        
+      </p>
+
+      <%= form_tag "/member_reservation" do |f| %>
+        <%= hidden_field_tag :timeslots, nil, value: @times %>
+        <%= hidden_field_tag :lane_id, nil, value: @lane.id %>
+        <%= hidden_field_tag :date, nil, value: @date %>
+        <%= hidden_field_tag :gun_range_id, nil, value: @gun_range.id %>
+        <%= hidden_field_tag :gun_type, nil, value: @gun_type %>
+        <%= hidden_field_tag :number_of_guests, nil, value: @number_of_guests %>
+        <%= hidden_field_tag :user_id, nil, value: @user.id %>
+        <%= hidden_field_tag :hours_used, nil, value: (@times.count / 2.00).to_d.round(2) %>
+
+
+
+        <%= submit_tag "User Member Hours and Continue Reservation", class: 'btn btn-gtr-green' %>
+
+      <% end %>
+    </div>
+  <% else %>
+    <div class='col-md-6'>
+      <% if current_user.stripe_customer_token.present? %>
+          <%= render 'existing_card_reservation_payment' %>
+            <br>
+            <br>
+            <br>
+      <% else %>
+         <%= form_for @payment do |f| %>
+
+                <div>
+                  <p id="stripe_error" class="text-danger">
+                    <noscript>JavaScript is not enabled and is required for this form. First enable it in your web browser settings.</noscript>
+                    <% if @payment.errors[:base].present? %>
+                      <span class="help-block has-error"><%= @payment.errors[:base].join(', ') %></span>
+                    <% end %>
+                  </p>
+                </div>
+
+                  <%= f.hidden_field :amount, value: @per_hour*(@times.count.to_d/2)*100 + (@number_of_guests.to_i*5)*100 %>
+                  <%= f.hidden_field :paymentable_type, value: MasterReservation %>
+                  <%#= f.hidden_field :paymentable_id, value: @training_session.id %>
+                  <%= f.hidden_field :user_id, value: current_user.id %>
+                  <%= f.hidden_field :stripe_card_token %>
+                  <%= hidden_field_tag :timeslots, nil, value: @times %>
+                  <%= hidden_field_tag :lane_id, nil, value: @lane.id %>
+                  <%= hidden_field_tag :date, nil, value: @date %>
+                  <%= hidden_field_tag :gun_range_id, nil, value: @gun_range.id %>
+                  <%= hidden_field_tag :gun_type, nil, value: @gun_type %>
+                  <%= hidden_field_tag :number_of_guests, nil, value: @number_of_guests %>
+
+
+
+                 <div class="form-group col-md-12 no-pad">
+                    <%= label_tag :name, "Name on Card" %>
+                    <%= text_field_tag :name, nil, name: nil, class: 'form-control input-lg' %>
+                </div>
+
+                <div class="form-group col-md-9 no-pad-left">
+                    <%= label_tag :card_number, "Credit Card Number " %>
+                    <%= text_field_tag :card_number, nil, name: nil, class: 'form-control input-lg' %>
+                </div>
+
+                <div class="form-group col-md-3 no-pad">
+                    <%= label_tag :card_code, "CVV" %>
+                    <%= text_field_tag :card_code, nil, name: nil, class: 'form-control input-lg' %>
+                </div>
+
+                  <div class='col-md-6 no-pad form-group'>
+                  <%= label_tag :card_month, "Card Expiration" %>
+                    <%= select_month nil, {add_month_numbers_true: true}, {name: nil, id: "card_month", class: 'form-control input-lg'} %>
+                  </div>
+                  <div class=' col-md-6 no-pad-right form-group' style='padding-top:25px;'>
+                    <%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+15}, {name: nil, id: "card_year", class: 'form-control input-lg'}%>
+                  </div>
+
+                  <h4 class='white'>Base Fee: <span class='pull-right service'><%= number_to_currency( @per_hour*(@times.count.to_d/2)) %></span></h4>
+
+
+
+                  <h4 class='white'>Guests: <span class='pull-right service'><%= number_to_currency((@number_of_guests.to_i*5)) %></span></h4>
+
+
+                 <h1 id='total-payment' class='white'>Total: <span class='pull-right price'><%= number_to_currency(@per_hour*(@times.count.to_d/2) + (@number_of_guests.to_i*5)) %></span></h1>
+
+
+                <div class="form-group col-md-12">
+                  <%= f.submit "Confirm Reservation and Pay", class: 'btn btn-lg btn-gtr-green pull-right' %>
+                  <br>
+                </div>
+                  <i class='orange'>Do not click more than once or you could be charged more than once.</i>
+                  <br>
+                  <br>
+                  <br>
+
+                <%#= link_to "Confirm Reservation and Pay", master_reservations_url(master_reservation:{user_id: current_user.id},timeslots: @times, lane_id: @lane.id, date: @date, gun_range_id: @gun_range.id), method: 'post', class: 'btn btn-gtr-green' %>
+
+            <% end %>
+        <% end %>
+      </div>
+      <% end %>

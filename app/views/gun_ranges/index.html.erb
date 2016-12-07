@@ -1,0 +1,20 @@
+<div class='row padding-bottom'>
+  <div class='col-md-6 col-md-offset-3'>
+    <h2 class='green text-center'>Please Choose a Range</h2>
+  </div>
+</div>
+
+<div class='row'>
+  <div class='col-md-10 col-md-offset-1'>
+    <% @gun_ranges.each do |gr| %>
+    <div class='col-md-6 '>
+      <div class='col-md-12 well'>
+        <h2 class='text-center green'><%= link_to gr.name, gun_range_calendar_url(gr) %></h2>
+        <center>
+          <%= image_tag('gtrlogo.png', class: 'img-responsive') %>
+        </center>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>

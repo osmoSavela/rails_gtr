@@ -1,0 +1,54 @@
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <h2>Deluxe Packages <%= link_to '<i class="fa fa-plus"></i> Add Deluxe Package'.html_safe, new_admin_deluxe_package_url, class: 'btn btn-gtr-green' %></h2>
+    <br>
+    <table class='table'>
+      <th class='green'>
+        Training Class
+      </th>
+      <th>
+        Description
+      </th>
+      <th>
+        Value
+      </th>
+      <th>
+        Price
+      </th>
+      <th>
+
+      </th>
+      <th>
+
+      </th>
+
+      <tbody>
+        <% @deluxe_packages.each do |d| %>
+          <tr id='deluxe_package_<%= d.id %>'>
+            <td class='green'>
+              <%= d.training_class.name %>
+            </td>
+            <td>
+              <%= d.description %>
+            </td>
+            <td>
+              $<%= d.value %>
+            </td>
+
+            <td>
+              <%= number_to_currency(d.price) %>
+            </td>
+
+            <td>
+              <%= link_to 'Edit', edit_admin_deluxe_package_url(d), class: 'btn btn-warning' %>
+            </td>
+
+            <td>
+              <%= link_to 'Delete', admin_deluxe_package_url(d), class: 'btn btn-danger', method: 'delete', remote: true %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,45 @@
+<%= form_for [:admin, @training_class] do |f| %>
+		<div class='col-md-4 col-md-offset-2'>
+			<div class='form-group'>
+				<%= f.label :name, 'Name of Class' %><br>
+				<%= f.text_field :name, class: 'form-control', placeholder: 'Type Here...' %>
+			</div>
+			<div class='form-group'>
+				<%= f.label :price, 'Price of Class' %><br>
+				<%= f.number_field :price, min:0, class: 'form-control', placeholder: 'Class Price', step: 0.5 %>
+			</div>
+			<div class='form-group'>
+				<%= f.label :description %><br>
+				<%= f.text_area :description, class: 'form-control', placeholder: 'What is this class about?', rows: '10' %>
+			</div>
+		</div>
+		<div class='col-md-4'>
+			<div class='form-group'>
+				<%= f.label :ammo_requirement, 'Ammo Requirement' %><br>
+				<%= f.text_field :ammo_requirement, class: 'form-control', placeholder: 'Ammo Required' %>
+			</div>
+
+			<div class='form-group'>
+				<%= f.label :credential_requirement %><br>
+				<%= f.text_area :credential_requirement, class: 'form-control', placeholder: 'What credentials are required for this class?', rows: '4' %>
+			</div>
+
+			<div class='form-group'>
+				<%= f.label :equipment_requirement %><br>
+				<%= f.text_area :equipment_requirement, class: 'form-control', placeholder: 'What equipment is required for this class?', rows: '5' %>
+			</div>
+
+			<div class='form-group'>
+				<%= f.check_box :foid_required %>
+				<%= f.label :foid_required, "FOID card required to take class" %>
+			</div>
+
+			<div class='form-group'>
+				<%= f.check_box :active %>
+				<%= f.label :active, "This class will show on class list for users" %>
+			</div>
+
+			<%= f.submit 'Save', class: 'btn btn-gtr-green pull-right btn-lg' %>
+
+		</div>
+	<% end %>

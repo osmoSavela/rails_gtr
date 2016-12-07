@@ -1,0 +1,29 @@
+<div class='row'>
+	<div class='col-md-8 col-md-offset-2'>
+		<p class='lead orange'>Quantity and Special Instructions</p>
+
+		<%= form_for @order_item, remote: true do |f| %>
+		<div class='row padding-bottom'>
+			<% @menu_item.menu_item_options.each do |option| %>
+				<div class='col-md-6'>
+					<%= option.name %>: <%= check_box_tag option.name %>		
+				</div>
+			<% end %>
+		</div>
+				<%= f.hidden_field :user_id, value: @user.id %>
+				<%= f.hidden_field :menu_item_id, value: @menu_item.id %>
+				<%= f.hidden_field :price, value: @menu_item.price %>
+			<div class='form-group'>
+				<%= f.label :quantity %><br>
+				<%= f.number_field :quantity, class: 'form-control' %>
+			</div>
+
+			<div class='form-group'>
+				<%= f.label :special_instructions %><br>
+				<%= f.text_area :special_instructions, class: 'form-control', placeholder: 'Hot peppers on the side, etc....' %>
+			</div>
+
+			<%= f.submit 'Add to Order', class: 'btn btn-gtr-green' %>
+		<% end %>
+	</div>
+</div>

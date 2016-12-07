@@ -1,0 +1,35 @@
+<%= form_for Order.new do |f| %>
+
+        <%= f.hidden_field :user_id, value: @user.id %>
+        <%= f.hidden_field :item_total, value: @item_total %>
+        <%= f.hidden_field :payment_method, value: @payment_method %>
+        <br>
+        <div class='form-group text-right'>
+          <%= f.check_box :delivery %>
+          <%= f.label :delivery, class: 'black' %>
+        </div>
+        <div id='delivery-address' class='hidden'>
+          <div class='form-group'>
+            <%= label_tag :address, 'Address', class: 'black' %>
+            <%= text_field_tag :address, nil, class: 'form-control' %>
+          </div>        
+            <div class='form-group col-md-6 no-pad'>
+              <%= label_tag :city, "City", class: 'black' %>
+              <%= text_field_tag :city, nil, class: 'form-control' %>
+            </div>
+            <div class='form-group col-md-6 no-pad-right'>
+              <%= label_tag :state, "State", class: 'black' %>
+              <%= text_field_tag :state, nil, class: 'form-control' %>
+            </div>
+            <div class='form-group'>
+              <%= label_tag :zip, "Zip", class: 'black' %>
+              <%= text_field_tag :zip, nil, class: 'form-control' %>
+            </div>
+        </div>
+
+        <div class='form-group'>
+
+          <%= f.submit "Submit Order", class: 'btn btn-gtr-green btn-block btn-lg' %>
+        </div>
+
+      <% end %>

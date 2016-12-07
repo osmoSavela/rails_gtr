@@ -1,0 +1,37 @@
+<%= form_for [:admin, @training_session] do |f| %>
+  <div class='form-group'>
+    <%= f.label :training_class_id, "Which class are you creating the session for?" %>
+    <%= f.collection_select :training_class_id, TrainingClass.all, :id, :name, class: 'form-control' %>
+  </div>
+  <div class='form-group'>
+    <%= f.label :session_date, "Date of Session" %>
+    <%= f.text_field :session_date, class: 'datepicker form-control' %>
+  </div>
+
+  <div class='form-group'>
+    <%= f.label :start_time, "Starting Time" %>
+    <%= f.text_field :start_time, class: 'timepicker form-control', value: "#{@training_session.start_time.strftime("%l:%M %p")}" %>
+  </div>
+
+  <div class='form-group'>
+    <%= f.label :end_time, "Ending Time" %>
+    <%= f.text_field :end_time, class: 'timepicker form-control', value: "#{@training_session.end_time.strftime("%l:%M %p")}" %>
+  </div>
+
+  <div class='form-group'>
+    <%= f.label :quantity_available, "Number of Available Seats" %>
+    <%= f.number_field :quantity_available, class: 'form-control' %>
+  </div>
+
+  <div class='form-group'>
+    <%= f.label :instructor_id, "Lead Instructor" %>
+    <%= f.collection_select :instructor_id, Instructor.all, :id, :full_name %>
+  </div>
+
+  <div class='form-group'>
+    <%= f.label :deluxe_package, "Are you offering a deluxe package for this class?" %>
+    <%= f.check_box :deluxe_package, class: 'form-control' %>
+  </div>
+
+  <%= f.submit 'Save', class: 'btn btn-gtr-green btn-block' %>
+<% end %>

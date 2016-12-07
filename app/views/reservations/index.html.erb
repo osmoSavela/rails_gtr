@@ -1,0 +1,48 @@
+<div class='row'>
+  <div class='col-md-10 col-md-offset-1'>
+    <p>
+      <%= link_to '<i class="fa fa-angle-double-left"></i> Back to Account'.html_safe, user_url(current_user), class: 'orange' %>
+    </p>
+
+  <% if @reservations.present? %>
+    <h3>My Reservations</h3>
+    <table class='table'>
+      <th class='orange'>Date</th>
+      <th class='orange'>Range</th>
+      <th class='orange'>Lane</th>
+      <th class='orange'>Paid</th>
+      <th class='orange'>Payment Method</th>
+      <th class='orange'>Date Created</th>
+
+
+    <tbody>
+      <% @reservations.each do |reservation| %>
+        <tr>
+          <td class='green'>
+            <h4><%= reservation.day.strftime('%A, %B %e, %Y') %><br>
+            <%= reservation.reservation_time.strftime('%l:%M %p') %> to <%= (reservation.reservation_time+ 30.minutes).strftime('%l:%M %p') %></h4>
+          </td>
+          <td>
+            <%= reservation.gun_range.name %>
+          </td>
+          <td>
+            <%= reservation.lane.number %>
+          </td>
+          <td><%= reservation.master_reservation.paid %></td>
+          <td><%= reservation.master_reservation.payment_method %></td>
+          <td><%= reservation.master_reservation.created_at.strftime("%m/%d/%y") %></td>
+
+
+
+        </tr>
+      <% end %>
+    </tbody>
+    </table>
+  <% else %>
+    <h3 class='text-center'> No reservations made!</h3>
+  <% end %>
+  <br>
+  <br>
+  <br>
+  </div>
+</div>

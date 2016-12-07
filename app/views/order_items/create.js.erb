@@ -1,0 +1,2 @@
+$('#myModal').modal('hide');
+$('#order-area').replaceWith('<%= j(render('/pages/order_area', :@new_items => @user.current_order_items)) %>');

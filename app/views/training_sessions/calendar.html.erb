@@ -1,0 +1,37 @@
+<div class='row'>
+  <div class='col-md-12 padding-top'>
+
+      <h1 class='green'>Classes</h1>
+      <p class=' border-bottom-white '></p>
+      <p class='lead white'>View the classes below and click the register button to sign up. You must be logged in to register for a class, membership discounts will be applied automatically. <%= link_to 'Log in here.', new_user_session_path if !current_user %></p>
+
+      <div class="btn-group" role="group" aria-label="...">
+          <%= link_to "List View", training_sessions_url, class: 'btn btn-default green', type: 'button' %>
+        <%= link_to "Calendar View", calendar_url, class: 'btn btn-default green active', type: 'button' %>
+        </div>
+
+
+    <%= month_calendar events: @sessions do |date, sessions| %>
+      <%= date.strftime("%d") %>
+
+      <% sessions.sort_by{ |s| s.start_time}.each do |session| %>
+        <div>
+          <b><%= link_to session.training_class.name, training_session_url(session), "data-no-turbolink" => true  %></b> <span style='color: black'>- <%= session.start_time.strftime("%l:%M %p") %> to <%= session.end_time.strftime("%l:%M %p") %></span> <br>
+          <span style='color: black'><b>Lead Instructor:</b> <br><%= link_to session.instructor.full_name, instructor_url(session.instructor), class: 'dark-green' if session.instructor %></span><br>
+          <i class='text-danger'><%= "SOLD OUT" if session.quantity_available == 0 %></i>
+        </div>
+      <% end %>
+    <% end %>
+    <br>
+  </div>
+
+</div>
+
+
+<script type="text/javascript">
+
+  var table = $('.calendar-header').next();
+  table.addClass('calendar-table');
+
+  var session = $('.day div').addClass('calendar-session');
+</script>

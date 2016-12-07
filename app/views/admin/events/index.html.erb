@@ -1,0 +1,51 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h3>GTR Events <%= link_to '<i class="fa fa-plus"></i> Add New Event'.html_safe, new_admin_event_url, class: 'btn btn-gtr-green', "data-no-turbolink" => true %></h3>
+      <br>
+      <table class='table'>
+        <th width='15%'>
+          Event Date
+        </th>
+
+        <th>
+          Title
+        </th>
+
+        <th>
+          Description
+        </th>
+
+        <th>
+
+        </th>
+
+        <th>
+
+        </th>
+
+        <tbody>
+          <% @events.each do |e| %>
+            <tr id='event_<%= e.id %>'>
+              <td width='15%'>
+                <%= e.event_start_date.strftime('%m/%d/%y') %> to <%= e.event_end_date.strftime('%m/%d/%y') %>
+              </td>
+              <td>
+                <%= e.title %>
+              </td>
+              <td>
+                <%= e.description %>
+              </td>
+              <td>
+                <%= link_to 'Edit', edit_admin_event_url(e), class: 'btn btn-warning', "data-no-turbolink" => true %>
+              </td>
+              <td>
+                <%= link_to 'Delete', admin_event_url(e), class: 'btn btn-danger', method: 'delete', remote: true %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

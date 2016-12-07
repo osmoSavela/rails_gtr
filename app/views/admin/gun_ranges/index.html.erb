@@ -1,0 +1,33 @@
+<div class='row padding-bottom'>
+  <div class='col-md-12'>
+    <%= link_to '<i class="fa fa-angle-double-left"></i> Back to Dashboard'.html_safe, admin_dashboard_url, class: 'pull-left orange' %>
+  </div>
+</div>
+
+<div class='row padding-bottom'>
+  <div class='col-md-10 col-md-offset-1'>
+    <h2 class='green'>Ranges  <span ><%= link_to "Add Range", new_admin_gun_range_url, class: 'btn btn-gtr-green' %></span></h2>
+  </div>
+</div>
+
+<div class='row'>
+  <div class='col-md-10 col-md-offset-1'>
+    <table class='table'>
+      <thead>
+        <th>Range</th>
+        <th width='8%'></th>
+        <th width='8%'></th>
+      </thead>
+
+      <tbody>
+        <% @gun_ranges.each do |gr| %>
+          <tr id='range_<%= gr.id %>'>
+            <td><%= link_to gr.name, admin_gun_range_url(gr) %></td>
+            <td><%= link_to 'Edit', edit_admin_gun_range_url(gr), class: 'btn btn-default' %></td>
+            <td><%= link_to 'Delete', admin_gun_range_url(gr), class: 'btn btn-danger', method: 'delete', remote: true, data: {confirm: 'Are you sure you want to delete this range?'} %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

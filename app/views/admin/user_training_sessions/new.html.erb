@@ -1,0 +1,14 @@
+<div class='row padding-bottom'>
+	<div class='col-md-12'>
+		<h2>Add a User to <%= @training_session.training_class.name %> on <%= @training_session.session_date.strftime("%m/%d/%y") %></h2>
+	</div>
+</div>
+<div class='row padding-bottom'>
+	<div class='col-md-4 col-md-offset-4'>
+		<% if params[:new_user] %>
+			<%= render 'admin_create_user_form' %>
+		<% else %>
+			<%= render 'existing_user_form' %>
+		<% end %>
+	</div>
+</div>

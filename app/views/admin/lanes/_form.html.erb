@@ -1,0 +1,10 @@
+<%= form_for [:admin, @gun_range, @lane] do |f| %>
+  <div class='form-group'>
+    <%= f.label :number, "Lane Number" %><br>
+    <%= f.number_field :number, class: 'form-control', placeholder: 'Lane Number' -%>
+  </div>
+
+  <%= f.hidden_field :gun_range_id, value: @gun_range.id %>
+
+  <%= f.submit 'Save Lane', class: 'btn btn-gtr-green pull-right' %>
+<% end %>

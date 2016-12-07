@@ -1,0 +1,70 @@
+<div id='about-section'>
+	<div class='container'>
+		<div class='row padding-top padding-bottom'>
+			<div class='col-md-4'>
+				<br>
+				<br>
+				<%= image_tag('class.jpg', class: 'img-responsive about') %>
+			</div>
+
+			<div class='col-md-8'>
+				<h1 class='green'>GTR Firearm Training Institute</h1>
+				<p class='lead'>GTR Training Institute, a division of GTR Sport Club, was established to offer a wide range of training classes that meet all individuals' needs and experience levels. Classes range from introductory, such as Illinois Carry and Conceal and NRA Basic Pistol, to more advanced classes such as Advanced Tactical Pistol and Speed Shooting. Classes can be tailored made to meet individuals' schedules with our private lessons. Feel free to browse our list of current classes and come back soon, we are always adding new, exciting classes!
+					<br>
+					<br>
+				<%= link_to 'View Upcoming Classes', calendar_url, class: 'btn btn-gtr-orange btn-lg' %></p>
+			</div>
+
+
+		</div>
+
+	</div>
+</div>
+
+<div id='membership-section' class='thick-green-border-top'>
+	<div class='container'>
+		<div class='row padding-top padding-bottom'>
+			<h3 class='green padding-bottom'>Review the Vast Diversity of Classes Available to GTR Members and Guests</h3>
+
+			<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+				<% @training_classes.each do |training_class| %>
+				<div class="panel panel-default panel-gtr">
+					<div class="panel-heading class-panel" role="tab" id="heading<%= training_class.id %>">
+						<h4 style='color: black' class="panel-title">
+							<a data-toggle="collapse" data-parent="#accordion" href="#collapse<%= training_class.id %>" aria-expanded="true" aria-controls="collapse<%= training_class.id %>">
+								<%= training_class.name %>
+							</a>
+						</h4>
+					</div>
+					<div id="collapse<%= training_class.id %>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading<%= training_class.id %>">
+						<div class="panel-body">
+							<h2 class='green'><%= number_to_currency(training_class.price) %></h2>
+
+
+							<p class='green lead'><b>Credentials Required: </b><%= training_class.credential_requirement %></p>
+
+							<p class='green lead'><b>Equipment Required: </b><%= training_class.equipment_requirement %></p>
+
+							<% if training_class.foid_required %>
+								<p class='orange lead'>
+									FOID Card required
+								</p>
+							<% else %>
+								<p class='orange lead'>
+									No Foid Required
+								</p>
+							<% end %>
+
+							<p class='lead'><%= training_class.description %>
+								<br>
+								<br>
+
+								<a href="/training_sessions#ccw_part_1" class='btn btn-gtr-orange'>Book a Class</a></p>
+						</div>
+					</div>
+				</div>
+				<% end %>
+			</div>
+		</div>
+	</div>
+</div>

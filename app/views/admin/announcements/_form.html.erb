@@ -1,0 +1,17 @@
+<%= form_for [:admin, @announcement] do |f| %>
+      <div class='form-group'>
+        <%= f.label :content, 'Announcement Content' %><br>
+        <%= f.text_area :content, class: 'form-control', placeholder: 'Type Here...', rows: '6' %>
+      </div>
+
+      <div class='form-group'>
+        <%= f.check_box :active %>
+        <%= f.label :active, "Active" %>
+      </div>
+
+      <%= f.submit 'Save', class: 'btn btn-gtr-green pull-right btn-lg' %>
+  <% end %>
+<br>
+<br>
+<br>
+<br>

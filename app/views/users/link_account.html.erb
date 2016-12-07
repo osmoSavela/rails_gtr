@@ -1,0 +1,20 @@
+<div class='col-md-4 col-md-offset-4'>
+  <h2 class='orange'>Link Existing Account</h2>
+  <p class='gray'><em><b>If you became a member inside GTR use the form below to link your online account!</em></b></p>
+  <p class='text-danger'><b>This is currently disabled, please use the form to the left to create an account.</b></p>
+    <%= form_tag verify_existing_user_url, method: 'get' do %>
+      <div class='form-group'>
+        <%= label_tag :last_name, 'Last Name' %><br>
+        <%= text_field_tag :last_name, nil, class: 'form-control' %>
+      </div>
+
+      <div class='form-group'>
+        <%= label_tag :email, 'Email Address' %><br>
+        <%= text_field_tag :email, nil, class: 'form-control' %>
+      </div>
+
+      <%= submit_tag 'Submit', class: 'btn btn-gtr-orange' %>
+    <% end %>
+    <br>
+    <br>
+</div>

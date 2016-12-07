@@ -1,0 +1,17 @@
+<div class='col-md-12 well well-sm small-margin-bottom'>
+  <% if @date <= Date.today && timeslot.strftime("%H") < Time.zone.now.in_time_zone('US/Central').strftime("%H") %>
+    <!--Past Time -->
+    <h2 class='text-center text-muted no-margin-top no-margin-bottom'> <i class='fa fa-times'></i> <%= timeslot.strftime("%I:%M %p") %></h2>
+  <% else %>
+    <% if @reservations.are_made_for_time(@lane, @gun_range, @date.to_date , timeslot) %>
+        <!-- Time is booked -->
+        <h2 class='text-center text-muted no-margin-top no-margin-bottom'> <i class='fa fa-times'></i> <%= timeslot.strftime("%I:%M %p") %></h2>
+        <% reservation = @reservations.find_reservation(@lane, @gun_range, @date.to_date, timeslot) %>
+        <h3 class='no-margin-top green text-center'><%= reservation.user.full_name  %><br>FOID #<%= reservation.user.foid_id  %></h3>
+    <% else %>
+      <center>
+        <h2 class='green no-margin-top no-margin-bottom'><%= timeslot.strftime("%I:%M %p") %> <span><%= link_to "Reserve Time", new_reservation_url(lane_id: @lane.id, gun_range_id: @gun_range.id, day: @date, reservation_time: timeslot), class: 'btn btn-gtr-green' %></span></h2>
+      </center>
+    <% end %>
+  <% end %>
+</div>

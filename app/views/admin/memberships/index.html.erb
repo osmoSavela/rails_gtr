@@ -1,0 +1,26 @@
+<div class='row'>
+	<div class='col-md-10 col-md-offset-1'>
+		<h2>Memberships <%= link_to 'Add New Membership', new_admin_membership_url, class: 'btn btn-gtr-green', 'data-no-turbolink' => true  %></h2>
+		<br>
+		<br>
+		<table class='table'>
+			<th>Membership Name</th>
+			<th>Membership Description</th>
+			<th>Monthly Price</th>
+			<th>Annual Price</th>
+			<th></th>
+
+			<tbody>
+				<% @memberships.each do |m| %>
+					<tr>
+						<td style='color: <%= m.hex_color %>'><%= m.name %></td>
+						<td width='45%'><%= m.description %></td>
+						<td><%= number_to_currency(m.monthly_price) %></td>
+						<td><%= number_to_currency(m.annual_price) %></td>
+						<td><%= link_to 'Edit', edit_admin_membership_url(m), class: 'btn btn-warning', 'data-no-turbolink' => true %></td>
+					</tr>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
+</div>

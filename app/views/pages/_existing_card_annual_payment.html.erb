@@ -1,0 +1,26 @@
+
+<div class='col-md-12'>
+  <h2 class='green'>Extend Membership</h2>
+    <p class='lead'> Your <%= current_user.current_card_brand %> **** **** **** <%= current_user.current_card_last_4 %> will be charged <%= number_to_currency(@amount) %>.
+      <% if current_user.membership_id %>
+        Your current membership expiration date is <%= current_user.membership_expires_on.strftime("%m/%d/%y") %>.
+      <% end %>
+
+     Click "Complete Membership Payment" below to complete your charge.
+
+</p>
+
+
+  <%= form_for @payment,html: {id: 'existing_card'}  do |f| %>
+        <%= hidden_field_tag :frequency, nil, value: @frequency %>
+        <%= f.hidden_field :amount, value: @amount*100 %>
+        <%= f.hidden_field :user_id, value: current_user.id %>
+        <%= hidden_field_tag :membership_id, nil, value: @membership.id %>
+
+      <h1 class='white'>Total: <span class='pull-right'><%= number_to_currency(@amount) %></span></h1>
+      <div class="form-group">
+        <%= f.submit "Complete Membership Payment", class: 'btn btn-lg btn-gtr-green pull-right' %>
+      </div>
+  <% end %>
+
+</div>

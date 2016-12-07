@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="row padding-bottom">
+    <div class="col-md-8 col-md-offset-2">
+      <h2 class='text-center orange'>Check Out What's Happening at GTR Sporting Club</h2>
+        <% if @events.present? %>
+          <% @events.each do |e| %>
+            <div class="row border-bottom-white">
+            <h3 class='green'><%= e.title %>
+              <span class='pull-right'>
+                <small>
+                  <%= e.event_start_date.strftime('%m/%d/%y') %> to <%= e.event_end_date.strftime('%m/%d/%y') %>                                  
+                <br>
+                  <%= e.event_start_time.strftime('%l:%M %p') if e.event_start_time %> to <%= e.event_end_time.strftime('%l:%M %p') if e.event_end_time %>
+                </small>
+              </span>
+            </h3>
+              <p class='lead'>
+                <%= e.description %>
+              </p>
+            </div>
+          <% end %>
+        <% else %>
+          <h3 class='text-center padding-bottom'>No upcoming events!</h3>
+        <% end %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,2 @@
+$('li#order_item_<%= @order_item.id %>').fadeOut();
+$('span#order-total').text('<%= number_to_currency(current_user.current_order_items.map{|i| i.total_price}.inject(:+)) %>');

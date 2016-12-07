@@ -1,0 +1,26 @@
+<%= form_for [:admin, @deluxe_package] do |f| %>
+  <div class="form-group">
+    <%= f.label :description %><br>
+    <%= f.text_area :description, class: 'form-control', placeholder: 'Type the deluxe package description / contents', rows: '5' %>
+  </div>
+
+  <div class="form-group left-inner-addon">
+    <i class='fa fa-usd'></i>
+    <%= f.label :value, "Value of package" %>
+    <%= f.number_field :value, class: 'form-control', min: 0, placeholder: 'i.e. 200.00' %>
+  </div>
+
+  <div class="form-group left-inner-addon">
+    <i class='fa fa-usd'></i>
+
+    <%= f.label :price, 'Actual Price of Package' %><br>
+    <%= f.number_field :price, step: '.01', min: 0, class: 'form-control', placeholder: 'i.e. 15.99' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :training_class_id, 'Training Class' %><br>
+    <%= f.collection_select :training_class_id, TrainingClass.all, :id, :name %>
+  </div>
+
+  <%= f.submit 'Save', class: 'btn btn-gtr-green' %>
+<% end %>

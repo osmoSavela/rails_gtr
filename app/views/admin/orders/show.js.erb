@@ -1,0 +1,3 @@
+$('#myModal').modal('show');
+$('.modal-header').text('Order #<%= @order.id %>');
+$('.modal-body').html('<%= j(render('order')) %>');

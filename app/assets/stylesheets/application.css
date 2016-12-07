@@ -1,0 +1,447 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require jquery-ui
+ *= require pickadate/default
+ *= require pickadate/default.date
+ *= require pickadate/default.time
+ *= require_tree .
+ *= require_self
+ */
+
+ #gun_type_and_guests{
+   /*position: fixed;*/
+
+ }
+
+ #timeslot_list{
+   height: 500px;
+   overflow: scroll;
+ }
+
+ .schedule-well{
+  font-size: 16px;
+  line-height: 1.5em;
+  padding: 5px;
+  background-color: #474747;
+  margin-bottom: 5px;
+  border-radius: 4px;
+ }
+
+
+ .right-inner-addon {
+    position: relative;
+}
+.right-inner-addon input {
+    padding-right: 30px;
+}
+.right-inner-addon i {
+    position: absolute;
+    right: 5px;
+    padding: 7px 15px;
+    pointer-events: none;
+    color: black;
+}
+
+ .calendar-margin-top{
+  margin-top: 38px;
+ }
+
+
+.sold-out{
+   -ms-transform: rotate(27deg); /* IE 9 */
+  -webkit-transform: rotate(27deg); /* Chrome, Safari, Opera */
+  transform: rotate(27deg);
+  font-size: 28px;
+  margin-top: 15px;
+  padding-top: 8px;
+  border: 3px solid;
+}
+
+ #coming-soon-text{
+  -ms-transform: rotate(30deg); /* IE 9 */
+  -webkit-transform: rotate(30deg); /* Chrome, Safari, Opera */
+  transform: rotate(30deg);
+  margin-top: 26%;
+ }
+
+ #coming-soon{
+  border-radius: 25px;
+  border: 1px solid #f6f6f6;
+  height: 377px;
+ }
+
+.carousel-font{
+    font-size: 25px !important;
+    margin-top: 104px;
+}
+
+
+ .menu-category-section{
+  padding-bottom: 40px;
+ }
+
+ .menu-item-list{
+  padding-left: 0 !important;
+ }
+
+ .menu-item-list li{
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-size: 16px;
+  border-bottom: 1px solid #f6f6f6;
+ }
+
+ .past{
+  background-color: gray;
+ }
+
+ .today{
+  border: 3px solid #7ED321 !important;
+  background-color: #fff;
+  color: black;
+ }
+
+ .calendar-header{
+  font-size: 24px;
+  text-align: center;
+ }
+
+ .calendar-header a{
+  margin: 10px;
+  font-size: 33px;
+ }
+
+ .calendar-table{
+  font-size: 12px;
+  width: 100%;
+ }
+
+
+ .calendar-session{
+  background: #7ED321;
+  padding: 4px;
+  font-size: 13px;
+  border-radius: 2px;
+  color: white !important;
+  margin-bottom: 4px;
+ }
+
+ .calendar-session a{
+  color: black !important;
+ }
+
+ td.day{
+  border: 1px solid white;
+  width: 10%;
+  vertical-align: top !important;
+  height: 150px !important;
+  padding: 6px;
+  overflow: auto;
+ }
+
+
+
+ .alert-gtr{
+  background-color: #FFD455;
+  color: #474747 !important;
+ }
+
+ .alert-real-danger{
+   background-color: #a94442;
+   color: #f2dede;
+ }
+
+
+ .alert-gtr-green{
+  background-color: #7ED321;
+  color: #fff !important;
+  border-radius: 0px;
+ }
+
+ .outline-well{
+   min-height: 20px;
+  padding: 19px;
+  margin-bottom: 10px;
+  border: 1px solid #e3e3e3;
+  border-radius: 4px;
+  overflow: auto;
+ }
+
+ .bulletless{
+  list-style: none;
+ }
+
+ select {
+  width: 100% !important;
+    border: 1px solid #cccccc !important;
+    background-color: #ffffff !important;
+    height: 34px !important;
+    color: #474747;
+}
+
+ a,a:focus, a:hover{
+ 	color:#7ED321;
+ }
+
+
+
+ h1, h2, h3, h4, h5{
+ 	font-family: 'Play', sans-serif !important;
+ }
+
+ .black{
+  color: black;
+ }
+
+ .panel-gtr{
+ 	background: transparent !important;
+ }
+
+ .no-margin-top{
+  margin-top: 0px;
+ }
+
+ .no-margin-bottom{
+  margin-bottom: 0px;
+ }
+
+ .class-panel{
+ 	background-color: #417505 !important;
+ 	border-color: #417505 !important;
+ }
+
+ .pages-nav-link:hover{
+	background-color: transparent !important;
+	color: #417505 !important;
+}
+
+
+
+ .gold{
+ 	color: gold !important;
+ }
+
+ .silver{
+ 	color: silver !important;
+ }
+
+ .family{
+ 	color: #E95125 !important;
+ }
+
+ .corporate{
+ 	color: #CB205F !important;
+ }
+
+ .patriotic{
+ 	color: #1AA55A !important;
+ }
+
+ div.pricing-well{
+	min-height: 600px;
+	border: 1px solid #f6f6f6 !important;
+	border-radius: 8px;
+  padding-bottom: 15px;
+}
+
+div.large-pricing-well{
+  min-height: 300px;
+  border: 1px solid #f6f6f6 !important;
+  border-radius: 8px;
+  padding-bottom: 15px;
+}
+
+.pricing-item{
+	padding: 13px;
+	font-size: 17px !important;
+	margin-bottom: 0 !important;
+}
+
+.small-margin-bottom{
+  margin-bottom: 5px;
+}
+
+.small-margin-top{
+  margin-top: 5px;
+}
+
+ .padding-top{
+ 	padding-top: 20px;
+ }
+
+ .padding-bottom{
+ 	padding-bottom: 20px;
+ }
+
+ .no-margin-left{
+    margin-left: 0px;
+ }
+
+ .no-pad{
+  padding-left: 0 !important;
+ 	padding-right: 0 !important;
+ }
+
+ .no-pad-right{
+ 	padding-right: 0px;
+ }
+
+  .no-pad-left{
+ 	padding-left: 0px;
+ }
+
+ img.about{
+	padding: 8px !important;
+	border: 5px solid #f6f6f6 !important;
+}
+
+ .thick-green-border-right{
+ 	border-right: 5px solid #7ED321;
+ }
+
+ .thick-green-border-left{
+ 	border-left: 5px solid #7ED321;
+ }
+
+ .thick-green-border-top{
+ 	border-top: 5px solid #7ED321;
+ }
+
+ #footer-container{
+ 	min-height: 257px;
+ 	background-color: #417505;
+ 	border-top: 5px solid #7ED321;
+ 	padding-top: 20px;
+ 	padding-bottom: 20px;
+  /*margin-top: 30px;*/
+ }
+
+ .jumbo{
+ 	font-size: 48px;
+
+ }
+
+ .thin{
+ 	font-weight: lighter;
+ }
+
+ .white{
+ 	color: #f6f6f6 !important;
+ }
+
+ .left-inner-addon {
+  position: relative;
+}
+
+.left-inner-addon input {
+  padding-left: 25px;
+}
+
+.left-inner-addon i {
+  position: absolute;
+  padding: 35px 12px;
+  pointer-events: none;
+  color: black;
+}
+
+ .border-left-white{
+ 	border-left: 1px solid #f6f6f6 !important;
+ }
+
+ .border-right-white{
+ 	border-right: 1px solid #f6f6f6 !important;
+ }
+
+ .border-left-green{
+ 	border-left: 1px solid #7ED321 !important;
+ }
+
+.border-bottom-gray{
+  border-bottom: 1px solid #e6e6e6 !important;
+ }
+
+ .border-bottom-white{
+ 	border-bottom: 1px solid #f6f6f6 !important;
+ }
+
+ .border-top-white{
+ 	border-top: 1px solid #f6f6f6 !important;
+ }
+
+ ul.unstyled li{
+ 	list-style-type: none;
+ }
+
+ ul.unstyled{
+ 	padding-left: 0 !important;
+ }
+
+ .btn-gtr-green{
+ 	background-color: #7ED321 !important;
+ 	color: #474747 !important;
+ }
+
+ .btn-gtr-orange{
+ 	background-color: #ffd455 !important;
+ 	color: #474747 !important;
+ }
+
+ .green{
+ 	color: #7ED321 !important;
+ }
+
+ .dark-green{
+  color: #417505 !important;
+ }
+
+ .orange{
+ 	color: #FFD455 !important;
+ }
+
+ .gray {
+  color: #979797 !important;
+ }
+
+ .admin-dash-btn{
+ 	height: 170px;
+ 	background-color: #7ED321 ;
+ 	border-radius: 18px;
+ 	border: 1px solid #417505;
+ }
+
+ .admin-dash-icon{
+  font-size: 50px !important;
+  margin-top: 27px;
+ }
+
+ .admin-dash-btn a{
+ 	font-size: 23px !important;
+ }
+
+  .admin-dash-btn a:hover{
+  text-decoration: none !important;
+ }
+
+#waiver_date_of_birth_1i{
+  width: 30% !important;
+}
+
+#waiver_date_of_birth_2i{
+  width: 30% !important;
+  margin-left: 20px;
+}
+
+#waiver_date_of_birth_3i{
+  width: 30% !important;
+  margin-left: 20px;
+}

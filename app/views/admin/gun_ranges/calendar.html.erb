@@ -1,0 +1,38 @@
+<div class='row'>
+  <div class='col-md-12 padding-top'>
+        <%= link_to "<i class='fa fa-angle-double-left'></i> Back to Ranges".html_safe, admin_select_range_url %>
+
+      <h1 class='green'>Please Select a Day</h1>
+      <p class=' border-bottom-white '></p>
+      <p class='lead white'>View the days below and click the "Select" button to continue. You must be logged in to book a lane, membership discounts will be applied automatically. <%= link_to 'Log in here.', new_user_session_path if !current_user %></p>
+
+
+    <%= month_calendar  do |date| %>
+        <%= date.strftime("%d") %>
+
+        <h2 class='text-center calendar-margin-top'>
+          <% unless date < Time.zone.now.to_date %>
+            <% if date.monday? %>
+                <h3 class='text-muted text-center'>Closed</h3>
+            <% else %>
+              <%= link_to "Select", admin_gun_range_url(@gun_range, date: date), class: 'btn btn-gtr-green btn-block' %>
+            <% end %>
+          <% end %>
+
+        </h2>
+
+
+    <% end %>
+    <br>
+  </div>
+
+</div>
+
+
+<script type="text/javascript">
+
+  var table = $('.calendar-header').next();
+  table.addClass('calendar-table');
+
+  var session = $('.day div').addClass('calendar-session');
+</script>

@@ -1,0 +1,34 @@
+<div class='container'>
+		<h1 class='text-center'>Frankie's Cafe</h1>
+
+
+	<div class='col-md-8'>
+			<div class='col-md-12'>
+				<h2 class='dark-green no-margin-top'>Manage Menu <%= link_to 'Add Category +', new_admin_menu_category_url, remote: true, class: 'btn btn-gtr-green' %></h2>
+
+				<% @menu_categories.each do |category| %>
+				<div id='menu_category_<%= category.id %>' class='menu-category-section'>
+					<h2 class='orange'><%= category.name %> <%= link_to 'Add Item <i class="fa fa-plus"></i>'.html_safe, new_admin_menu_item_url(category_id: category.id), remote: true, class: 'btn btn-xs btn-gtr-green' %> <%= link_to 'Edit Category <i class="fa fa-pencil"></i>'.html_safe, edit_admin_menu_category_url(category), remote: true, class: 'btn btn-xs btn-gtr-orange' %> <%= link_to 'Delete Category <i class="fa fa-trash-o"></i>'.html_safe, admin_menu_category_url(category), method: 'delete', remote: true, data: {confirm: 'Are you sure?'}, class: 'btn btn-xs btn-danger' %></h2>
+
+						<%= render '/admin/menu_items/menu_items', :@menu_category => category %>
+				</div>
+				<% end %>
+			</div>
+	</div>
+
+		<div class='col-md-4 well'>
+			<h3 class='dark-green no-margin-top'>Recent Orders <span class='pull-right'><%= link_to 'View All', admin_orders_url, class: 'btn btn-gtr-green btn-xs' %></span></h3>
+			<% @recent_orders.each do |order| %>
+			<li class='border-bottom-gray bulletless'><%= link_to "##{order.id} - #{order.user.full_name} - #{order.created_at.strftime('%m/%d/%y at %I:%M %p')}" %>
+				<ul>
+					<% order.order_items.each do |i| %>
+						<li class='gray'><%= i.menu_item.name %> x <%= i.quantity %></li>
+					<% end %>
+					<li><%= link_to 'view details', admin_order_url(order), class: 'btn btn-default btn-xs', remote: true %></li>
+				</ul>
+
+
+			</li>
+			<% end %>
+		</div>
+</div>

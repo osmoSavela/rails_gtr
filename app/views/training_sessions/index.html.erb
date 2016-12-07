@@ -1,0 +1,58 @@
+
+	<div class='padding-top'>
+		<h1 class='green'>Classes</h1>
+    <p class=' border-bottom-white '></p>
+		<p class='lead white'>View the classes below and click the register button to sign up. You must be logged in to register for a class, membership discounts will be applied automatically. <%= link_to 'Log in here.', new_user_session_path if !current_user %></p>
+	</div>
+
+	<div class='row padding-bottom'>
+    <div class='col-md-12'>
+      <div class="btn-group" role="group" aria-label="...">
+        <%= link_to "List View", training_sessions_url, class: 'btn btn-default active green', type: 'button' %>
+        <%= link_to "Calendar View", calendar_url, class: 'btn btn-default green', type: 'button' %>
+      </div>
+
+        <% @training_sessions.each do |s| %>
+          <h2 class='orange'><%= s.first.strftime("%A, %B %e, %Y") %></h2>
+          <ul class='bulletless no-pad-left'>
+            <% s[1].each do |x| %>
+
+              <li id='<%= x.training_class.moniker %>' class='outline-well'>
+
+                  <div class='col-md-3 no-pad-left text-center'>
+                    <h3 class='no-margin-top'><%= x.try(:start_time).strftime("%l:%M %p") %> - <%= x.try(:end_time).strftime("%l:%M %p") %></h3>
+                    <p class='orange'><%= "FOID Required <br> ".html_safe if x.training_class.foid_required %><%= "#{x.training_class.ammo_requirement} <br>".html_safe if x.training_class.ammo_requirement %> <%= "Equipment Required" if x.training_class.equipment_requirement %></p>
+                    <b>Instructor: <%= x.instructor.full_name if x.instructor %></b>
+                  </div>
+                  <div class='col-md-5 no-pad'>
+                    <h2 class='green no-margin-top no-margin-bottom'><%= x.training_class.name %></h2>
+                    <p class='lead no-margin-bottom'><%= x.training_class.description.truncate(100) %>
+                   <%= link_to 'More', training_session_details_url(x), remote: true %></p>
+                  </div>
+
+                  <div class='col-md-2'>
+                    <h1 class='orange no-margin-bottom' style='margin-top: 35px;'><%= number_to_currency(x.training_class.price) %></h1>
+
+                  </div>
+
+                  <div class='col-md-2'>
+                    <br>
+                    <br>
+                      <% if x.quantity_available > 0 %>
+                        <%= link_to "Register", training_session_url(x), class: 'btn btn-gtr-green btn-block btn-lg', 'data-no-turbolink' => true %><br>
+                        <center>(<%= x.quantity_available %> Spots Available)</center>
+                      <% else %>
+                        <p class='text-center text-danger sold-out'>Sold Out</p>
+                      <% end %>
+                  </div>
+
+              </li>
+
+            <% end %>
+          </ul>
+        <% end %>
+
+
+    </div>
+  </div>
+

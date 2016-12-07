@@ -1,0 +1,55 @@
+<div class='container'>
+  <div class='col-md-12'>
+
+    <h1 class='text-center'>Check In</h1>
+
+    <% if @reservations.present?  %>
+        <table class='table table-bordered'>
+          <thead>
+            <th>User</th>
+            <th>Time</th>
+            <th>Range</th>
+            <th>Lane</th>
+            <th>Check In</th>
+
+
+          </thead>
+
+          <tbody>
+
+            <% @reservations.each do |r| %>
+              <% if r.reservation_time >= Time.zone.now - 1.hour %>
+
+                <tr>
+
+                  <td><%= r.user.reservation_name %></td>
+                  <td><%= r.reservation_time.strftime("%I:%M %p") %> - <%= (r.reservation_time + 30.minutes).strftime("%I:%M %p") %></td>
+                  <td><%= r.gun_range.name %></td>
+                  <td><%= r.lane.number %></td>
+                  <td>
+                    <% if r.master_reservation.checked_in %>
+                      <h4>Checked in at <%= r.master_reservation.checked_in_at.strftime("%I:%M %p") %></h4>
+                    <% else %>
+                      <%= link_to "Check In", master_checkin_url(reservation_id: r.id), remote: true, class: 'btn btn-gtr-green btn-block' %>
+                    <% end %>
+                  </td>
+                </tr>
+              <% end %>
+            <% end %>
+          </tbody>
+        </table>
+    <% else %>
+
+      <h3 class='text-center'>No reservations yet today!</h3>
+
+    <% end %>
+
+
+  <br>
+  <br>
+  <br>
+  <br>
+  </div>
+</div>
+
+<%= render 'layouts/modal' %>

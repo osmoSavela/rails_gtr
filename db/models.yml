@@ -1,0 +1,224 @@
+User
+  first_name
+  last_name
+  email
+  encrypted_password
+  reset_password_token
+  reset_password_sent_at
+  remember_created_at
+  created_at
+  updated_at
+  sign_in_count: integer(0)
+  current_sign_in_at
+  last_sign_in_at
+  current_sign_in_ip
+  last_sign_in_ip
+  phone
+  cell_phone
+  work_phone
+  address1
+  address2
+  city
+  state
+  zip
+  date_of_birth: date
+  admin: boolean(false)
+  foid_id
+  foid_or_license
+  membership_expires_on
+  membership_id
+  membership_type
+  hours_available: decimal(0.00)
+  guests_left: integer(0)
+  stripe_customer_token
+
+Waiver
+  first_name
+  middle_name
+  last_name
+  email
+  date_of_birth: date
+  foid_or_license
+  address1
+  address2
+  city
+  state
+  zip
+  mental_illness: boolean
+  substance_abuse: boolean
+  criminal_record: boolean
+  us_citizen: boolean
+  user_id: integer
+
+Membership
+  name
+  description: text
+  annual_price: float(0.00)
+  monthly_price: float(0.00)
+  hex_color
+  range_hours: integer
+  training_discount: integer
+  range_ammo_discount: integer
+  accessory_discount: integer
+  private_instructor_discount: integer
+  annual_guest_passes: integer
+  lounge_access: boolean(true)
+  stripe_plan_id: string
+
+Event
+  title
+  description: text
+  event_start_date: date
+  event_end_date: date
+  event_start_time: datetime
+  event_end_time: datetime
+
+TrainingClass
+  name
+  description: text
+  price: float
+  ammo_requirement
+  credential_requirement: text
+  equipment_requirement: text
+  foid_required: boolean(true)
+  moniker
+  active: boolean(true)
+  created_at
+  updated_at
+
+DeluxePackage
+  description: text
+  value
+  price: float
+  training_class_id: integer
+
+Announcement
+  content
+  active: boolean(false)
+  created_at
+  updated_at
+
+OrderDeliveryAddress
+  order_id: integer
+  address
+  city
+  state
+  zip
+
+Order
+  user_id: integer
+  delivery: boolean(false)
+  item_total: float(0)
+  delivery_total: float(0)
+  total_price: float(0)
+  payment_method
+  completed: boolean(false)
+  created_at
+  updated_at
+
+OrderItem
+  order_id
+  user_id
+  menu_item_id
+  price: float(0)
+  special_instructions: text
+  quantity: integer(1)
+  created_at
+  updated_at
+
+OrderItemOption
+  menu_item_option_id
+  order_item_id
+
+MenuCategory
+  name
+  created_at
+  updated_at
+
+MenuItem
+  menu_category_id: integer
+  price: float
+  name
+  description: text
+  created_at
+  updated_at
+
+MenuItemOption
+  name
+  menu_item_id
+
+Payment
+  user_id: integer
+  amount: integer
+  paymentable_type
+  paymentable_id: integer
+  charge_token
+  card_last_4
+  card_brand
+  created_at
+  updated_at
+  description: text
+
+TrainingSession
+  session_date: date
+  start_time: datetime
+  end_time: datetime
+  training_class_id: integer
+  instructor_id: integer
+  quantity_available: integer(24)
+  deluxe_package: boolean
+  created_at
+  updated_at
+
+Subscription
+  membership_id
+  payment_id
+  user_id
+  expires_on
+  description
+  amount_paid: float
+  created_at
+
+HomepageVideo
+  url
+
+UserTrainingSession
+  training_session_id: integer
+  user_id: integer
+  deluxe_package: boolean
+  payment_method
+  paid: boolean(false)
+  created_at
+  updated_at
+
+Instructor
+  first_name
+  last_name
+  email
+  bio: text
+  image
+
+GunRange
+  name
+
+Lane
+  number: integer
+  gun_range_id: integer
+
+Reservation
+  user_id: integer
+  lane_id: integer
+  gun_range_id: integer
+  day: date
+  reservation_time: datetime
+  master_reservation_id: integer
+
+MasterReservation
+  user_id: integer
+  gun_type
+  number_of_guests: integer
+  created_at
+  paid: boolean(false)
+  payment_method
+  checked_in: boolean(false)
+  checked_in_at

@@ -1,0 +1,67 @@
+<%= form_for @payment do |f| %>
+
+               <div>
+                  <p id="stripe_error" class="text-danger">
+                    <noscript>JavaScript is not enabled and is required for this form. First enable it in your web browser settings.</noscript>
+                    <% if @payment.errors[:base].present? %>
+                      <span class="help-block has-error"><%= @payment.errors[:base].join(', ') %></span>
+                    <% end %>
+                  </p>
+                </div>
+
+                <%= f.hidden_field :amount, value: @item_total*100 %>
+                <%= f.hidden_field :user_id, value: current_user.id %>
+                <%= f.hidden_field :stripe_card_token %>
+
+
+
+                   <div class="form-group col-md-12 no-pad">
+                      <%= label_tag :name, "Name on Card", class: 'black' %>
+                      <%= text_field_tag :name, nil, name: nil, class: 'form-control input-lg' %>
+                  </div>
+
+                  <div class="form-group col-md-9 no-pad-left">
+                      <%= label_tag :card_number, "Credit Card Number ", class: 'black' %>
+                      <%= text_field_tag :card_number, nil, name: nil, class: 'form-control input-lg' %>
+                  </div>
+
+                  <div class="form-group col-md-3 no-pad">
+                      <%= label_tag :card_code, "CVV", class: 'black' %>
+                      <%= text_field_tag :card_code, nil, name: nil, class: 'form-control input-lg' %>
+                  </div>
+
+                    <div class='col-md-6 no-pad form-group'>
+                    <%= label_tag :card_month, "Card Expiration", class: 'black' %>
+                      <%= select_month nil, {add_month_numbers_true: true}, {name: nil, id: "card_month", class: 'form-control input-lg'} %>
+                    </div>
+                    <div class=' col-md-6 no-pad-right form-group' style='padding-top:25px;'>
+                      <%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+15}, {name: nil, id: "card_year", class: 'form-control input-lg'}%>
+                    </div>
+
+                    <div class='form-group text-right'>
+                      <%= check_box_tag :delivery, nil, false, id: 'order_delivery' %>
+                      <%= label_tag :delivery, 'Delivery', class: 'black' %>
+                    </div>
+                    <div id='delivery-address' class='hidden'>
+                      <div class='form-group'>
+                        <%= label_tag :address, 'Address', class: 'black' %>
+                        <%= text_field_tag :address, nil, class: 'form-control' %>
+                      </div>
+                        <div class='form-group col-md-6 no-pad'>
+                          <%= label_tag :city, "City", class: 'black' %>
+                          <%= text_field_tag :city, nil, class: 'form-control' %>
+                        </div>
+                        <div class='form-group col-md-6 no-pad-right'>
+                          <%= label_tag :state, "State", class: 'black' %>
+                          <%= text_field_tag :state, nil, class: 'form-control' %>
+                        </div>
+                        <div class='form-group'>
+                          <%= label_tag :zip, "Zip", class: 'black' %>
+                          <%= text_field_tag :zip, nil, class: 'form-control' %>
+                        </div>
+                    </div>
+
+                  <div class="form-group">
+                    <%= f.submit "Pay & Submit Order", class: 'btn btn-lg btn-gtr-green btn-block' %>
+                  </div>
+                <% end %>

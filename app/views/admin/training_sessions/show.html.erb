@@ -1,0 +1,54 @@
+<div class='row padding-top border-bottom-white'>
+	<%= link_to "<i class='fa fa-angle-double-left'></i> Back to Session List".html_safe, admin_training_sessions_url, class: 'orange' %>
+	<div class='col-md-12'>
+		<h1 class='green'><%= @training_session.training_class.name %> <%= link_to "Edit", edit_admin_training_session_url(@training_session), class: 'btn btn-default' %> <%= link_to '<i class="fa fa-user-plus"></i> Add User to Session'.html_safe, new_admin_user_training_session_url(training_session: @training_session.id), class: 'btn btn-gtr-green', 'data-no-turbolink' => true %></h1>
+	</div>
+
+	<div class='col-md-8'>
+		<p class='lead orange'><%= @training_session.session_date.strftime("%A, %B %e, %Y") %></p>
+	</div>
+
+	<div class='col-md-4'>
+		<p class='lead pull-right'><%= @training_session.start_time.strftime("%l:%M %p") %> to <%= @training_session.end_time.strftime("%l:%M %p") %></p>
+	</div>
+</div>
+
+<div class='row padding-top'>
+	<div class='col-md-12'>
+		<h3 class='orange'>Attendees (<%= @training_session.user_training_sessions.count %>)</h3>
+
+		<table class='table table-bordered'>
+			<thead>
+				<th>Attendee Name</th>
+				<th>Email</th>
+				<th>Sign Up Date</th>
+				<th>Deluxe Package</th>
+				<th>Payment Method</th>
+				<th>Payment Amount</th>
+				<th>Paid Status</th>
+			</thead>
+			<tbody>
+				<% @training_session.user_training_sessions.each do |sesh| %>
+					<tr>
+						<td><%= sesh.user.full_name %></td>
+						<td><%= sesh.user.email %></td>
+						<td><%= sesh.created_at.strftime("%m/%d/%y") %></td>
+						<td>
+							<%= sesh.deluxe_package %>
+						</td>
+						<td><%= sesh.payment_method %></td>
+						<td><%= number_to_currency(@training_session.payment_for(sesh.user).amount/100) if @training_session.payment_for(sesh.user) %></td>
+						<td id='payment_cell_<%= sesh.id %>'>
+							<% if sesh.paid %>
+								<%= sesh.paid %>
+							<% else %>
+								<%= sesh.paid %> <%= link_to 'Mark as paid', admin_user_training_session_url(sesh, user_training_session:{paid: true}), class: 'btn btn-xs btn-gtr-green', method: 'put', remote: true %>
+							<% end %>
+						</td>
+					</tr>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
+
+</div>

@@ -1,0 +1,53 @@
+
+	<%= link_to "<i class='fa fa-angle-double-left'></i> Back to Dashboard".html_safe, admin_dashboard_url, class: 'orange' %>
+	<div class='row padding-top padding-bottom'>
+		<div class='col-md-6'>
+			<h2>Upcoming Sessions <%= link_to 'Schedule a New Session', new_admin_training_session_url, class: 'btn btn-gtr-green', "data-no-turbolink" => true %></h2>
+
+		</div>
+
+	</div>
+
+	<div class='row padding-bottom'>
+    <div class='col-md-12'>
+       <div class="btn-group" role="group" aria-label="...">
+          <%= link_to "List View", admin_training_sessions_url, class: 'active btn btn-default green', type: 'button' %>
+        <%= link_to "Calendar View", calendar_url, class: 'btn btn-default green', type: 'button' %>
+        </div>
+        <% @training_sessions.each do |s| %>
+
+          <h2 class='orange'><%= s.first.strftime("%A, %B %e, %Y") if s.first %></h2>
+          <ul class='bulletless no-pad-left'>
+            <% s[1].each do |x| %>
+
+              <li id='<%= x.training_class.moniker %>' class='outline-well'>
+
+                  <div class='col-md-5 no-pad-left'>
+                    <h2 class='green no-margin-top no-margin-bottom'><%= link_to x.training_class.name, admin_training_session_url(x) %><br> <small><%= x.try(:start_time).strftime("%l:%M %p") %> - <%= x.try(:end_time).strftime("%l:%M %p") %></small></h2>
+                    <span class='lead'><b>Instructor: </b><%= x.instructor.full_name if x.instructor %></span>
+
+                  </div>
+                  <div class='col-md-5'>
+                  	<p class='lead orange'><%= pluralize(x.user_training_sessions.count, 'attendee') %> <%= link_to 'View All', admin_training_session_url(x), class: 'btn btn-gtr-green btn-xs' %></p>
+
+                  </div>
+
+                  <div class='col-md-1'>
+                    <p><%= link_to 'Edit', edit_admin_training_session_url(x), class: 'btn btn-default', 'data-no-turbolink' => true %></p>
+                  </div>
+
+                  <div class='col-md-1'>
+                  	<%= link_to 'Delete', admin_training_session_url(x), method: 'delete', class: 'btn btn-danger btn-block', data: {confirm: 'Are you sure you want to delete this training session?'} %>
+                  </div>
+
+              </li>
+
+            <% end %>
+          </ul>
+
+        <% end %>
+
+
+    </div>
+  </div>
+

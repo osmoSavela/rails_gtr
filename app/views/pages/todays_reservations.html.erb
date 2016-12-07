@@ -1,0 +1,42 @@
+<meta http-equiv="refresh" content="60" />
+
+<div class='container'>
+  <div class='col-md-12'>
+
+    <div class='alert alert-gtr lead'>Please proceed to the front desk when your reservation is highlighted.</div>
+
+    <h1 class='text-center'>Check In</h1>
+
+    <table class='table table-bordered'>
+      <thead>
+        <th>User</th>
+        <th>Time</th>
+        <th>Range</th>
+        <th>Lane</th>
+
+      </thead>
+
+      <tbody>
+
+
+        <% Reservation.today.order('reservation_time asc').each do |r| %>
+          <% if r.reservation_time >= Time.zone.now - 30.minutes %>
+            <% if r.coming_up_soon?  %>
+              <tr class='alert alert-gtr'>
+            <% else %>
+              <tr>
+
+            <% end %>
+              <td><%= r.user.reservation_name %></td>
+              <td><%= r.reservation_time.strftime("%I:%M %p") %> - <%= (r.reservation_time + 30.minutes).strftime("%I:%M %p") %></td>
+              <td><%= r.gun_range.name %></td>
+              <td><%= r.lane.number %></td>
+            </tr>
+          <% end %>
+        <% end %>
+      </tbody>
+    </table>
+
+
+  </div>
+</div>

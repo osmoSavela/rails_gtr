@@ -1,0 +1,51 @@
+
+<div class='col-md-12'>
+  <h2 class='green'>Register</h2>
+    <p class='lead'> Your <%= current_user.current_card_brand %> **** **** **** <%= current_user.current_card_last_4 %> will be charged <%= number_to_currency(@training_session.price_for(current_user)) %>.
+
+
+     Click "Register and Complete Payment" below to complete your charge.
+
+</p>
+
+
+   <%= form_for @payment,html: {id: 'existing_card'} do |f| %>
+
+        <%= f.hidden_field :amount, value: @training_session.price_for(current_user)*100 %>
+        <%= f.hidden_field :user_id, value: current_user.id %>
+        <%= hidden_field_tag :training_session_id, nil, value: @training_session.id %>
+
+      <h4 class='white'>Price: <span class='pull-right'><%= number_to_currency(@training_session.training_class.price) %></span></h4>
+      <% if current_user.membership.present? %>
+        <h4 class='green'>Membership Discount: <span class='pull-right'><%= current_user.membership.training_discount %>%</span></h4>
+      <% end %>
+      <% if @training_session.training_class.deluxe_package.present? %>
+        <h4>Would you like to add the deluxe package (<%= number_to_currency( @training_session.training_class.deluxe_package.price) %>)?
+          <span class='pull-right'><%= check_box_tag :deluxe_package %></span>
+        </h4>
+         <span class='hidden total-value'>
+          <%= number_to_currency((@training_session.price_for(current_user) + @training_session.training_class.deluxe_package.price))  %>
+         </span>
+
+
+         <span class='hidden class-value'><%= number_to_currency(@training_session.price_for(current_user)) %></span>
+
+
+            <span class='hidden service-fee-deluxe'>
+              <%= number_to_currency(((@training_session.price_for(current_user) + @training_session.training_class.deluxe_package.price)) )  %>
+            </span>
+
+      <% end %>
+
+
+      <h1 class='white'>Total: <span class='pull-right price'><%= number_to_currency(@training_session.price_for(current_user)) %></span></h1>
+
+
+      <div class="form-group col-md-12">
+        <%= f.submit "Register and Complete Payment", class: 'btn btn-lg btn-gtr-green pull-right' %>
+      </div>
+        <br>
+      <i class='orange'>*** Please only click to complete payment once or you may be charged more than once.</i>
+  <% end %>
+
+</div>

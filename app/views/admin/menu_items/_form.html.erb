@@ -1,0 +1,24 @@
+<div class='row'>
+	<div class='col-md-7' id='add_menu_item_to_<%= @category.id %>'>
+		<%= form_for [:admin,@menu_item], remote: true do |f| %>
+			<%= f.hidden_field :menu_category_id, value: @category.id %>
+			<div class='form-group'>
+				<%= f.label :name %><br>
+				<%= f.text_field :name, class: 'form-control' %>
+			</div>
+
+			<div class='form-group'>
+				<%= f.label :description %><br>
+				<%= f.text_area :description, class: 'form-control' %>
+			</div>
+
+			<div class='form-group'>
+				<%= f.label :price %><br>
+				<%= f.number_field :price, step: '.01', class: 'form-control' %>
+			</div>
+
+			<%= f.submit 'Continue', class: 'btn btn-gtr-green' %> <%= link_to 'Cancel', admin_franks_cafe_url, class: 'btn btn-default' %>
+
+		<% end %>
+	</div>
+</div>

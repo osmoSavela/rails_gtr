@@ -1,0 +1,27 @@
+<div class="col-md-4 border-right-white">
+  <center>
+    <h2 class='green'>
+      <%= @user.full_name %>
+    </h2>
+    <h3>
+      <% if @user.membership.present? %>
+        <span style='color: <%= @user.membership.hex_color %>'><%= @user.membership.name %> Member</span>
+      <% else %>
+        Non-member
+      <% end %>
+    </h3>
+
+    <p class='lead gray padding-bottom border-bottom-white'>
+      <span style='font-size: 70px;' class='orange'><%= @user.hours_available %></span><br> Range Hours Remaining
+
+    </p>
+
+    <%= link_to 'Edit Account', user_url(@user), class: 'btn btn-gtr-orange btn-block' %>
+    <%= link_to 'View Training Sessions', user_user_training_sessions_url(@user), class: 'btn btn-gtr-orange btn-block' %>
+    <%= link_to 'View Reservations',user_reservations_url(@user), class: 'btn btn-gtr-orange btn-block' %>
+    <%= link_to 'View Range Waiver', user_waiver_url(@user), class: 'btn btn-gtr-orange btn-block' %>
+    <%#= link_to 'Extend Membership', '#', class: 'btn btn-gtr-orange btn-block' %>
+    <%= link_to 'View Payments', user_billing_url(@user), class: 'btn btn-gtr-orange btn-block' %>
+
+  </center>
+</div>

@@ -1,0 +1,134 @@
+
+  <div class='row padding-top padding-bottom'>
+    <h1 class='green'><%= @training_session.training_class.name %></h1>
+    <p class=' border-bottom-white '></p>
+    <h2 class='orange'><%= @training_session.session_date.strftime("%A, %B %e, %Y") %> <span class='pull-right white'><%= @training_session.start_time.strftime("%l:%M %p") %> - <%= @training_session.end_time.strftime("%l:%M %p") %></span></h2>
+    <span class='lead white'><b>Instructor:</b> <%= link_to @training_session.instructor.full_name, instructor_url(@training_session.instructor) if @training_session.instructor %></span>
+  </div>
+
+  <div class='row padding-top'>
+    <div class='col-md-6 no-pad-left'>
+        <p class='lead white'><%= @training_session.training_class.description %></p>
+        <p class='orange'><%= "<i class='fa fa-check'></i> FOID Required <br> ".html_safe if @training_session.training_class.foid_required %><%= "<i class='fa fa-check'></i> Equipment Required  <br>".html_safe if @training_session.training_class.equipment_requirement %><%= "Ammo Requirement: #{@training_session.training_class.ammo_requirement}".html_safe if @training_session.training_class.ammo_requirement %></p>
+
+        <% if @training_session.training_class.deluxe_package.present? %>
+          <p>
+            <span class='green lead'>Deluxe Package available for this class:</span><br>
+
+            <%= @training_session.training_class.deluxe_package.description %>
+            <br>
+            A value of $<%= @training_session.training_class.deluxe_package.value %> for just <span class='lead green'><%= number_to_currency(@training_session.training_class.deluxe_package.price) %></span>
+          </p>
+        <% end %>
+    </div>
+
+    <div class='col-md-6'>
+      <% if @training_session.quantity_available > 0 %>
+        <% if current_user.stripe_customer_token.present? %>
+          <%= render 'existing_card_training_payment' %>
+        <% else %>
+           <%= form_for @payment do |f| %>
+
+            <div>
+              <p id="stripe_error" class="text-danger">
+                <noscript>JavaScript is not enabled and is required for this form. First enable it in your web browser settings.</noscript>
+                <% if @payment.errors[:base].present? %>
+                  <span class="help-block has-error"><%= @payment.errors[:base].join(', ') %></span>
+                <% end %>
+              </p>
+            </div>
+
+              <%= f.hidden_field :amount, value: @training_session.price_for(current_user)*100 %>
+              <%= f.hidden_field :paymentable_type, value: @training_session.class %>
+              <%= f.hidden_field :paymentable_id, value: @training_session.id %>
+              <%= f.hidden_field :user_id, value: current_user.id %>
+              <%= f.hidden_field :stripe_card_token %>
+              <%= hidden_field_tag :training_session_id, nil, value: @training_session.id %>
+
+             <div class="form-group col-md-12 no-pad">
+                <%= label_tag :name, "Name on Card" %>
+                <%= text_field_tag :name, nil, name: nil, class: 'form-control input-lg' %>
+            </div>
+
+            <div class="form-group col-md-9 no-pad-left">
+                <%= label_tag :card_number, "Credit Card Number " %>
+                <%= text_field_tag :card_number, nil, name: nil, class: 'form-control input-lg' %>
+            </div>
+
+            <div class="form-group col-md-3 no-pad">
+                <%= label_tag :card_code, "CVV" %>
+                <%= text_field_tag :card_code, nil, name: nil, class: 'form-control input-lg' %>
+            </div>
+
+              <div class='col-md-6 no-pad form-group'>
+              <%= label_tag :card_month, "Card Expiration" %>
+                <%= select_month nil, {add_month_numbers_true: true}, {name: nil, id: "card_month", class: 'form-control input-lg'} %>
+              </div>
+              <div class=' col-md-6 no-pad-right form-group' style='padding-top:25px;'>
+                <%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+15}, {name: nil, id: "card_year", class: 'form-control input-lg'}%>
+              </div>
+                  <h4 class='white'>Price: <span class='pull-right'><%= number_to_currency(@training_session.training_class.price) %></span></h4>
+      <% if current_user.membership.present? %>
+        <h4 class='green'>Membership Discount: <span class='pull-right'><%= current_user.membership.training_discount %>%</span></h4>
+      <% end %>
+      <% if @training_session.training_class.deluxe_package.present? %>
+        <h4>Would you like to add the deluxe package (<%= number_to_currency( @training_session.training_class.deluxe_package.price) %>)?
+          <span class='pull-right'><%= check_box_tag :deluxe_package %></span>
+        </h4>
+         <span class='hidden total-value'>
+          <%= number_to_currency((@training_session.price_for(current_user) + @training_session.training_class.deluxe_package.price) )  %>
+         </span>
+
+
+         <span class='hidden class-value'><%= number_to_currency(@training_session.price_for(current_user)) %></span>
+
+
+         <span class='hidden service-fee-class-only'><%= number_to_currency(@training_session.price_for(current_user)) %>
+         </span>
+
+         <span class='hidden service-fee-deluxe'>
+            <%= number_to_currency(@training_session.price_for(current_user))  %>
+         </span>
+
+      <% end %>
+
+      <h1 class='white'>Total: <span class='pull-right price'><%= number_to_currency(@training_session.price_for(current_user)) %></span></h1>
+
+            <div class="form-group col-md-12">
+              <%= f.submit "Register", class: 'btn btn-lg btn-gtr-green pull-right' %>
+            </div>
+            <i class='pull-right orange'>***Only click register once or you may be charged more than once.</i>
+          <% end %>
+
+        <% end %>
+      <% else %>
+      <p class='sold-out text-danger text-center'>Sold Out</p>
+      <% end %>
+
+    </div>
+  </div>
+      <br>
+      <br>
+
+      <script type="text/javascript">
+        var deluxe_package  = $('#deluxe_package')
+        var price  = $('.price')
+        var service  = $('.service')
+
+
+
+        deluxe_package.click( function() {
+            if (deluxe_package.is(':checked')) {
+              price.html($('.total-value').html())
+              service.html($('.service-fee-deluxe').html())
+
+            } else {
+              price.html($('.class-value').html())
+              service.html($('.service-fee-class-only').html())
+            }
+
+         });
+
+
+
+      </script>

@@ -1,0 +1,31 @@
+
+    <p class='lead'> Your <%= current_user.current_card_brand %> **** **** **** <%= current_user.current_card_last_4 %> will be issued a non-refundable charge of  <%= number_to_currency(@per_hour*(@times.count.to_d/2)) %>.
+      Click "Confirm Reservation and Pay" below to complete your charge.
+    </p>
+
+   <%= form_for @payment,html: {id: 'existing_card'} do |f| %>
+
+        <%= f.hidden_field :amount, value: @per_hour*(@times.count.to_d/2)*100 + (@number_of_guests.to_i*5)*100 %>
+        <%= f.hidden_field :paymentable_type, value: MasterReservation %>
+        <%= f.hidden_field :user_id, value: current_user.id %>
+        <%= hidden_field_tag :timeslots,  nil, value: @times %>
+        <%= hidden_field_tag :lane_id, nil, value: @lane.id %>
+        <%= hidden_field_tag :date, nil, value: @date %>
+        <%= hidden_field_tag :gun_range_id, nil, value: @gun_range.id %>
+        <%= hidden_field_tag :gun_type, nil, value: @gun_type %>
+        <%= hidden_field_tag :number_of_guests, nil, value: @number_of_guests %>
+
+       <h4 class='white'>Base Fee: <span class='pull-right service'><%= number_to_currency( @per_hour*(@times.count.to_d/2)) %></span></h4>
+
+
+
+          <h4 class='white'>Guests: <span class='pull-right service'><%= number_to_currency((@number_of_guests.to_i*5)) %></span></h4>
+
+
+         <h1 id='total-payment' class='white'>Total: <span class='pull-right price'><%= number_to_currency(@per_hour*(@times.count.to_d/2) + (@number_of_guests.to_i*5)) %></span></h1>
+
+
+      <div class="form-group">
+        <%= f.submit "Confirm Reservation and Pay", class: 'btn btn-lg btn-gtr-green pull-right' %>
+      </div>
+  <% end %>

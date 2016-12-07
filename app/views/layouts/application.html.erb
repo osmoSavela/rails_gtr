@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>GTR Sport - Gun Club | CCW Training</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag "https://js.stripe.com/v1/", 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+  <%= tag :meta, name: 'stripe-key', content: STRIPE_PUBLIC_KEY %>
+
+
+
+  <meta name='description' content='GTR is a high-end gun club located in Waukegan, IL. We have the best technology in gun ranges anywhere! Take all of your CCW Classes and train with the best!'>
+
+  <meta name='robots' content='index, nofollow'>
+  <%= render '/layouts/google_analytics' %>
+  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"> -->
+  <link href='//fonts.googleapis.com/css?family=Play:400,700' rel='stylesheet' type='text/css'>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+  <style type="text/css">
+
+    <% if controller_name == 'pages' && current_page?(root_url) %>
+        body{
+          background: url("<%= asset_path('wood_grain_2.jpg') %>")no-repeat !important;
+          background-size: cover;
+          -moz-background-size: cover;
+          -o-background-size: cover;
+          color: #f6f6f6 !important;
+
+        }
+    <% elsif current_page?(about_url) %>
+
+        body{
+          background: url("<%= asset_path('about-bg.png') %>")no-repeat center center fixed !important;
+          background-size: cover;
+          -moz-background-size: cover;
+          -o-background-size: cover;
+          color: #f6f6f6 !important;
+        }
+
+    <% end %>
+  </style>
+
+</head>
+<body>
+
+
+<% if Announcement.has_one_active? %>
+  <div style='margin-top:70px;'>
+    <%= render 'layouts/site_announcement' %>
+    <%= render '/pages/nav' %>
+  </div>
+<% elsif current_page?(checkin_url) || current_page?(todays_reservations_url) %>
+  <%= render '/pages/checkin_nav' %>
+<% else %>
+  <%= render '/pages/nav' %>
+<% end %>
+
+<%= render '/layouts/modal' %>
+
+<% if current_user %>
+  <% if !current_user.waiver.present? %>
+    <% unless current_page?(user_waiver_url(current_user)) || current_page?(checkin_url) || current_user.admin? %>
+
+    <div class="alert alert-gtr container">
+      <p>
+        To shoot at our range, you must fill out a waiver. To do so, please <%= link_to 'click here.', user_waiver_url(current_user), "data-no-turbolink" => true, class: 'gray' %>
+      </p>
+    </div>
+    <% end %>
+  <% end %>
+<% end %>
+
+<% if controller_name == 'pages'  %>
+    <%= yield %>
+
+<% else %>
+  <div class='container'>
+    <%= yield %>
+  </div>
+<% end %>
+
+
+<div class='green' id='footer-container'>
+  <footer>
+    <div class='container'>
+
+      <div class='col-md-4 no-pad-left'>
+          <!-- Begin MailChimp Signup Form -->
+            <div id="mc_embed_signup">
+              <form action="//gtrsport.us11.list-manage.com/subscribe/post?u=2ee6b41073077ba73f1f2e59e&amp;id=c8d544f856" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+                  <div id="mc_embed_signup_scroll">
+                <label for="mce-EMAIL">Subscribe to our mailing list</label>
+                <div class='form-group col-md-8 no-pad'>
+                  <input type="email" value="" name="EMAIL" class="email form-control" id="mce-EMAIL" placeholder="email address" required>
+                </div>
+                  <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+                  <div style="position: absolute; left: -5000px;"><input type="text" name="b_2ee6b41073077ba73f1f2e59e_c8d544f856" tabindex="-1" value=""></div>
+                  <div class="clear form-group col-md-4"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="btn btn-gtr-orange"></div>
+                  </div>
+              </form>
+
+            </div>
+
+          <!--End mc_embed_signup-->
+
+
+
+        <center style='margin-top: 70px;'><%= image_tag('gtrlogo.png') %></center>
+      </div>
+
+      <div class='col-md-2'>
+
+
+          <ul class='unstyled'>
+            <li><%= link_to 'Home', root_url, "data-no-turbolink" => true, class: 'lead orange' %></li>
+            <li><%= link_to 'About', about_url, "data-no-turbolink" => true, class: 'lead orange' %></li>
+            <li><%= link_to 'Memberships', "/about#memberships-section", class: 'lead orange', "data-no-turbolink" => true %></li>                        
+            <li><%= link_to 'Register', new_user_registration_url, "data-no-turbolink" => true, class: 'lead orange' %></li>
+          </ul>
+
+          <%= link_to image_tag('nra.svg', width: '50%'), 'http://home.nra.org/', target: "_blank" %>
+
+
+      </div>
+
+
+
+      <div id='footer' class='col-md-2'>
+
+        <p><b>Address:</b></p>
+        <address>3059 Washington Street, Waukegan, IL 60085</address>
+
+        <p><b>Main Phone:</b><br>
+          <a class='white' href="tel:+18477828888">847-782-8888</a>
+        </p>
+
+        <p><b>Hours of Operation:</b><br>
+          <strong>Closed Monday</strong><br>
+          <strong>Tues-Fri:</strong> 10AM - 8PM <br>
+          <strong>Saturday:</strong> 9AM - 5PM <br>
+          <strong>Sunday: </strong>9AM - 5PM
+        </p>
+
+        <p>© 2015 GTR Sporting Club</p>
+
+
+      </div>
+
+      <div class='col-md-4 border-left-green'>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d11792.915379947888!2d-87.878074!3d42.358962!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0000000000000000%3A0xc22563688afd1ce4!2sGTR+Sporting+Club!5e0!3m2!1sen!2sus!4v1423083709236" width="375" height="300" frameborder="0" style="border:0"></iframe>
+      </div>
+    </div>
+  </footer>
+</div>
+</body>
+</html>

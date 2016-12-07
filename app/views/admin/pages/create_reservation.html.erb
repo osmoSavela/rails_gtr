@@ -1,0 +1,46 @@
+<div class='container'>
+  <div class='row'>
+    <div class='col-md-12'>
+      <div class='alert alert-gtr lead text-center'>
+        <i class='fa fa-exclamation-circle'></i> Please note that reservations are made in 30 minute blocks.  If you would like to reserve a lane for longer, please go back and select more times.
+      </div>
+
+      <%= link_to "<i class='fa fa-angle-double-left'></i> Back to available times".html_safe, gun_range_lane_url(@gun_range, @lane, date: @date) %>
+    </div>
+  </div>
+
+  <div class="row padding-bottom">
+
+    <div class='col-md-6 no-pad-left'>
+      <h2>Confirm Reservation</h2>
+      <table class='table table-bordered'>
+        <thead>
+          <th>Range</th>
+          <th>Lane</th>
+          <th>Date</th>
+          <th>Time</th>
+
+        </thead>
+
+        <tbody>
+          <% @times.each do |time| %>
+            <tr>
+              <td><%= @gun_range.name %></td>
+              <td><%= @lane.number %></td>
+              <td><%= @date.strftime("%m/%d/%y") %></td>
+              <td><%= time.strftime("%I:%M %p") %> - <%= (time + 30.minutes).strftime("%I:%M %p") %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="col-md-6">
+      <% if params[:new_user] %>
+  			<%= render 'admin_create_user_form' %>
+  		<% else %>
+  			<%= render 'existing_user_form' %>
+  		<% end %>
+    </div>
+  </div>
+</div>

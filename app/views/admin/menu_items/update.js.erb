@@ -1,0 +1,1 @@
+$('#add_menu_item_to_<%= @menu_item.menu_category.id %>').replaceWith('<%= j(render('menu_items', :@menu_category => @menu_item.menu_category)) %>');

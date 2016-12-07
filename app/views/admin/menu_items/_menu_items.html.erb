@@ -1,0 +1,24 @@
+<ul class='menu-item-list bulletless' id='add_menu_items_for_category_<%= @menu_category.id %>'>
+  <% @menu_category.menu_items.each do |item| %>
+  	<li id='menu_item_<%= item.id %>'>
+  		<b><%= item.name %> - <span class='green'><%= number_to_currency(item.price) %></span></b>
+
+        <%= link_to '<i class="fa fa-pencil"></i> Edit'.html_safe, edit_admin_menu_item_url(item), class: 'btn btn-default btn-xs', remote: true %> <%= link_to '<i class="fa fa-trash"></i> Delete'.html_safe, admin_menu_item_url(item), class: 'btn btn-xs btn-danger', method: 'delete', remote: true, data: {confirm: 'Are you sure?'} %> <%= link_to 'Add Item Options', new_menu_item_option_url(menu_item_id: item.id), remote: true, class: 'btn btn-xs btn-gtr-orange' %>
+
+        <br>
+  		<span class='gray'>
+  			<%= item.description %>
+        <% if item.menu_item_options.present? %>
+    			<br>
+          <br>
+          <b class='dark-green'>Item Options</b>
+          <p>
+            <% item.menu_item_options.each do |i| %>
+              <i id='menu_item_option_<%= i.id %>'><%= i.name %> - <%= link_to "<i class='fa fa-trash'></i>".html_safe, menu_item_option_url(i), method: 'delete', class: 'text-danger', remote: true %><br></i>
+      			<% end %>
+          </p>
+        <% end %>
+  		</span>
+  	</li>
+  <% end %>
+</ul>

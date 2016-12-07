@@ -1,0 +1,35 @@
+<div class='row padding-bottom'>
+	
+	<div class='col-md-6 col-md-offset-3'>
+		<h2 class='green text-center'>GTR Instructor Directory</h2>
+	</div>
+</div>
+
+<div class='row'>
+	<div class='col-md-10 col-md-offset-1'>
+		<table class='table'>
+			<thead>
+				<th class='orange' width='15%'>Intructor</th>
+				<th class='orange' width='50%'>Specialty</th>
+				<th class='orange'>Next Class</th>				
+			</thead>
+
+			<tbody>
+				<% @instructors.each do |instructor| %>	
+					<tr id='instructor_<%= instructor.id %>'>
+						<td><%= link_to instructor.full_name, instructor_url(instructor) %></td>
+						<td><%= instructor.bio %></td>
+						<td>
+							<% if instructor.next_upcoming_session.present? %>
+								<%= link_to instructor.next_upcoming_session.training_class.name, training_session_url(instructor.next_upcoming_session) %><br>
+								<span class='gray'><%= instructor.next_upcoming_session.session_date.strftime("%A, %B %e, %Y") %></span><br>
+								<%= link_to 'Register', training_session_url(instructor.next_upcoming_session), class: 'btn btn-xs btn-gtr-green' %>
+							<% end %>
+						</td>
+
+					</tr>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
+</div>

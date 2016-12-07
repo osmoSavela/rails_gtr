@@ -1,0 +1,28 @@
+  <div class='row'>
+    <%= link_to "<i class='fa fa-angle-double-left'></i> Back to Dashboard".html_safe, admin_dashboard_url, class: 'orange' %>
+  </div>
+  <div class='row padding-top'>
+    <h1 class='green'>Announcements <%= link_to 'Add Announcement +', new_admin_announcement_url, class: 'btn btn-gtr-green' %></h1>
+
+    <table class='table table-bordered'>
+      <thead>
+        <th>Content</th>
+        <th>Active</th>
+        <th></th>
+        <th></th>
+      </thead>
+
+      <tbody>
+        <% @announcements.each do |a| %>
+          <tr>
+
+            <td><%= a.content %></td>
+            <td><%= a.active %></td>
+            <td width='8%'><%= link_to 'Edit', edit_admin_announcement_url(a), class: 'btn btn-default' %></td>
+            <td width='8%'><%= link_to 'Delete', admin_announcement_url(a), method: 'delete', class: 'btn btn-danger', data: {confirm: 'Are you sure?'} %></td>
+
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>

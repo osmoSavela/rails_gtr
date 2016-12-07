@@ -1,0 +1,146 @@
+// Place all the styles related to the pages controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+ #book-a-lane{
+ 	background: image-url('book-a-lane.jpg') no-repeat center center;
+ 	background-size: cover;
+ 	-webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+ }
+
+ #facilities{
+ 	background: image-url('facilities.jpg') no-repeat center center;
+ 	background-size: cover;
+ 	-webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+ }
+
+ #memberships{
+ 	background: image-url('memberships.jpg') no-repeat center center;
+ 	background-size: cover;
+ 	-webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+ }
+
+ #training-classes{
+	background: image-url('training-classes.jpg')no-repeat center center;
+	background-size: cover;
+	-webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+}
+
+ #m1{
+	background: image-url('M1911A1.png') no-repeat center center;
+	background-size: cover;
+	min-height: 123px !important;
+	-webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+}
+
+#m4{
+	background: image-url('m4.png') no-repeat center center;
+	background-size: contain;
+	min-height: 123px !important;
+	-webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+}
+
+
+
+#about-section{
+	background: image-url('about-bg.png')no-repeat center center;
+	background-size: cover;
+	-webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+}
+
+#membership-section{
+	background: image-url('black-bg.png')no-repeat center center;
+	/*background-image: url('black-bg.png') no-repeat center center;*/
+	background-size: cover;
+	-webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  padding-bottom: 40px;
+}
+
+h3.bottom{
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	margin-bottom: 0;
+	margin-top: 0;
+	background: rgba(10,10,10,.6);
+	width: 100%;
+	text-align: center;
+	padding-top: 7px;
+	padding-bottom: 7px;
+}
+
+.box-content{
+	border: 1px solid #f6f6f6;
+	min-height: 256px !important;
+}
+
+#dark-gray-overlay{
+	min-height: 346px;
+	background: rgba(51,51,51,.69);
+	margin-top: 40px;
+	padding-top: 20px;
+	padding-bottom: 40px;
+}
+
+h1{
+	color: #f6f6f6 !important;
+	font-weight: lighter !important;
+}
+
+h1.best-in-class{
+	width: 73% !important;
+	margin-top: 0 !important;
+}
+
+.navbar{
+	min-height: 170px !important;
+}
+
+.navbar a{
+	color: #7ED321 !important;
+	font-size: 20px !important;
+	font-family: 'Play', sans-serif !important;
+}
+
+.nav>li>a:focus, .nav>li>a:hover{
+	background: transparent !important;
+}
+
+#bs-example-navbar-collapse-1{
+	margin-top: 50px;
+}
+
+.regular-nav{
+	background: image-url('gtrlogo.png') no-repeat center;
+}
+
+#pistol{
+	background: image-url('pistola_midsize.png') no-repeat right center;
+	font-size: 16px !important;
+}
+
+#main-list li{
+	padding-top: 4px;
+	padding-bottom: 4px;
+}
+
+#upper-content{
+	/*height: 1098px;*/
+
+}

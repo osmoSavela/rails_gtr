@@ -1,0 +1,6 @@
+<%= form_for [:admin, @menu_category] do |f| %>
+	<%= f.label :name %><br>
+	<%= f.text_field :name, class: 'form-control', placeholder: 'Category Name' %><br>
+
+	<%= f.submit 'Save', class: 'btn btn-gtr-green' %>
+<% end %>

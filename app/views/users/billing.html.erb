@@ -1,0 +1,31 @@
+<div class='row padding-bottom'>
+
+    <%= render 'user_sidebar' %>
+
+    <div class="col-md-8">
+      <div class="col-md-12">
+      <h1 class='green'>Billing</h1>
+
+      <table class='table table-bordered'>
+        <thead>
+          <th>Card Used</th>
+          <th>Date</th>
+          <th>Description</th>
+          <th>Amount</th>
+        </thead>
+
+        <tbody>
+          <% @payments.each do |payment| %>
+            <tr>
+              <td><%= payment.card_brand %> ****<%= payment.card_last_4 %></td>
+              <td><%= payment.created_at.strftime("%m/%d/%y") %></td>
+              <td><%= payment.description %></td>
+              <td><%= number_to_currency(payment.amount/100) %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+   </div>
+  </div>
+</div>
+

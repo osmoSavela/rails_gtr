@@ -1,0 +1,19 @@
+<div class='col-md-12 well well-sm small-margin-bottom'>
+  <% if @date <= Date.today && timeslot < Time.zone.now %>
+    <!--Past Time -->
+    <h2 class='text-center text-muted no-margin-top no-margin-bottom'> <i class='fa fa-times'></i> <%= timeslot.strftime("%I:%M %p") %></h2>
+  <% else %>
+    <% if @reservations.are_made_for_time(@lane, @gun_range, @date.to_date , timeslot) %>
+        <!-- Time is booked -->
+        <h2 class='text-center text-muted no-margin-top no-margin-bottom'> <i class='fa fa-times'></i> <%= timeslot.strftime("%I:%M %p") %></h2>
+    <% else %>
+      <center>
+        <h2 class='green no-margin-top no-margin-bottom'><%= timeslot.strftime("%I:%M %p") %>
+          <%#= link_to "Reserve Time", reservations_url(reservation:{ user_id: current_user.id, lane_id: @lane.id, gun_range_id: @gun_range.id, day: @date, reservation_time: timeslot}), method: 'post', class: 'btn btn-gtr-green' %>
+          <%= check_box_tag :"timeslot-#{timeslot}" %>
+        </h2>
+      </center>
+    <% end %>
+  <% end %>
+</div>
+

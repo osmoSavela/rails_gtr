@@ -1,0 +1,31 @@
+<div class='container'>
+	<div class='row padding-bottom'>
+		<div class='col-md-6 large-pricing-well'>
+				<h2 style='color: <%= @membership.hex_color %>'><%= @membership.name %> Membership</h2>
+
+				<p class='lead'><%= @membership.description %></p>
+
+				<%= render 'membership_guts', membership: @membership %>
+
+		</div>
+
+		<div class='col-md-6'>
+			<% if @frequency == 'annual' %>
+					<% if current_user.stripe_customer_token %>
+						<%= render 'existing_card_annual_payment' %>
+
+					<% else %>
+						<%= render 'annual_payment_form' %>
+					<% end %>
+			<% elsif @frequency == 'monthly' %>
+					<% if current_user.stripe_customer_token && current_user.membership_id %>
+						<br>
+						<br>
+						<h3 class='text-center'>You are already subscribed for a monthly <%= current_user.membership.name %> plan! </h3>
+					<% else %>
+						<%= render 'monthly_payment_form' %>
+					<% end %>
+			<% end %>
+		</div>
+	</div>
+</div>

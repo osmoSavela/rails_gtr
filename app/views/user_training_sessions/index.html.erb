@@ -1,0 +1,37 @@
+<div class='row padding-bottom'>
+
+    <%= render 'users/user_sidebar' %>
+
+    <div class="col-md-8">
+      <div class="col-md-12">
+
+			<% if @user_training_sessions.present? %>
+				<table class='table'>
+					<th width='25%' class='orange'>Date</th>
+					<th class='orange'>Class Name</th>
+					<th class='orange'>Instructor</th>
+				<tbody>
+					<% @user_training_sessions.each do |i| %>
+						<tr>
+							<td class='gray'>
+								<%= i.training_session.session_date.strftime('%A, %B %e, %Y') %><br>
+								<%= i.training_session.start_time.strftime('%l:%M %p') %> to <%= i.training_session.end_time.strftime('%l:%M %p') %>
+							</td>
+							<td>
+								<%= link_to i.training_session.training_class.name, training_session_url(i.training_session) %>
+							</td>
+							<td>
+								<%= link_to i.training_session.instructor.full_name, instructor_url(i.training_session.instructor) if i.training_session.instructor %></td>
+						</tr>
+					<% end %>
+				</tbody>
+				</table>
+			<% else %>
+				<h3 class='text-center'> No classes booked!</h3>
+			<% end %>
+	<br>
+	<br>
+	<br>
+	</div>
+</div>
+</div>

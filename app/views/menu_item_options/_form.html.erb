@@ -1,0 +1,16 @@
+<div class='row'>
+	<div class='col-md-7' id='add_menu_item_to_<%= @menu_item.id %>'>
+		<h3>Add options for <%= @menu_item.name %> below</h3>
+		<%= form_for MenuItemOption.new, remote: true do |f| %>
+			<%= f.hidden_field :menu_item_id, value: @menu_item.id %>
+			<div class='form-group'>
+				<%= f.label :name %><br>
+				<%= f.text_field :name, class: 'form-control' %>
+			</div>
+			
+
+			<%= f.submit 'Add Menu Option', class: 'btn btn-gtr-green' %> <%= link_to 'Done Adding Options', admin_franks_cafe_url, class: 'btn btn-default' %>
+
+		<% end %>
+	</div>
+</div>

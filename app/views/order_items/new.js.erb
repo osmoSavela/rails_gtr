@@ -1,0 +1,3 @@
+$('#myModal').modal('show');
+$('.modal-header').text('Add <%= @menu_item.name %>');
+$('.modal-body').html('<%= j(render('form', :@order_item => @order_item)) %>');

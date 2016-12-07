@@ -1,0 +1,105 @@
+<%= form_for [:admin,@membership] do |f| %>
+		<div class='col-md-6'>
+			<div class='form-group'>
+				<%= f.label :name, "Membership Name" %><br>
+				<%= f.text_field :name, class: 'form-control', placeholder: 'Name of Membership' %>
+			</div>
+
+			<div class='form-group'>
+				<%= f.label :description, "Membership Description" %><br>
+				<%= f.text_area :description, class: 'form-control', placeholder: 'Type Description', rows: '5' %>
+			</div>
+
+			<div class='form-group col-md-6 no-pad-left'>
+				<%= f.label :monthly_price, "Monthly Price" %><br>
+				<%= f.number_field :monthly_price, class: 'form-control', step: '0.01' %>
+			</div>
+
+			<div class='form-group col-md-6 no-pad'>
+				<%= f.label :annual_price, "Annual Price" %><br>
+				<%= f.number_field :annual_price, class: 'form-control', step: '0.1' %>
+			</div>
+
+			<div class='form-group'>
+				<%= f.label :hex_color, "Heading Color Hex Code" %><br>
+				<%= f.text_field :hex_color, class: 'form-control', placeholder: ' "#" followed by hex code i.e.(#fefefe)' %>
+			</div>
+		</div>
+
+		<div class='col-md-6'>
+			<div class='form-group'>
+				<%= f.label :range_hours %><br>
+				<div class='col-md-3 no-pad-left'>
+					<%= f.text_field :range_hours, class: 'form-control', placeholder: 'i.e. 20' %>
+				</div>
+				<div class='col-md-9 no-pad-left'>
+					<h4>range hours</h4>
+				</div>
+			</div>
+
+			<div class='form-group'>
+				<%= f.label :training_discount, "Training Discount %(if applicable)" %><br>
+				<div class='col-md-3 no-pad-left right-inner-addon'>
+					<i>%</i>
+					<%= f.text_field :training_discount, class: 'form-control ', placeholder: 'i.e. 20' %>
+				</div>
+				<div class='col-md-9 no-pad-left'>
+					<h4>training discount</h4>
+				</div>
+			</div>
+
+			<div class='form-group'>
+				<%= f.label :annual_guest_passes %><br>
+				<div class='col-md-3 no-pad-left'>
+					<%= f.text_field :annual_guest_passes, class: 'form-control', placeholder: 'i.e. 4' %>
+				</div>
+				<div class='col-md-9 no-pad-left'>
+					<h4>annual guest passes</h4>
+				</div>
+			</div>
+
+			<div class='form-group'>
+				<%= f.label :private_instructor_discount, "Percentage discount on private instruction" %><br>
+				<div class='col-md-3 no-pad-left right-inner-addon'>
+					<i>%</i>
+					<%= f.text_field :private_instructor_discount, class: 'form-control', placeholder: 'i.e. 20' %>
+				</div>
+				<div class='col-md-9 no-pad-left'>
+					<h4>private instruction discount</h4>
+				</div>
+			</div>
+
+			<div class='form-group'>
+				<%= f.label :range_ammo_discount, "Percentage discount on range ammo" %><br>
+
+				<div class='col-md-3 no-pad-left right-inner-addon'>
+					<i>%</i>
+					<%= f.text_field :range_ammo_discount, class: 'form-control', placeholder: 'i.e. 20' %>
+				</div>
+				<div class='col-md-9 no-pad-left'>
+					<h4>range ammo discount</h4>
+				</div>
+			</div>
+
+			<div class='form-group'>
+				<%= f.label :accessory_discount, "Percentage discount on accessories" %><br>
+
+				<div class='col-md-3 no-pad-left right-inner-addon'>
+					<i>%</i>
+					<%= f.text_field :accessory_discount, class: 'form-control', placeholder: 'i.e. 20' %>
+				</div>
+				<div class='col-md-9 no-pad-left'>
+					<h4> accessory discount</h4>
+				</div>
+			</div>
+
+			<div class='form-group'>
+				<%= f.check_box :lounge_access %>
+				<%= f.label :lounge_access, "VIP Lounge Access" %>
+			</div>
+		</div>
+
+			<div class='col-md-6 col-md-offset-6'>
+				<%= f.submit 'Save', class: 'btn btn-gtr-green btn-lg' %>
+			</div>
+		<% end %>

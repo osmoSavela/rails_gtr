@@ -1,0 +1,23 @@
+<div class='row padding-bottom'>
+
+  <div class='col-md-10 col-md-offset-1'>
+    <%= link_to "<i class='fa fa-angle-double-left'></i> Back to Calendar".html_safe, admin_gun_range_calendar_url(@gun_range) %>
+    <h2 class='green text-center'><%= @gun_range.name %> - <%= @date.strftime("%m/%d/%y") %></h2>
+    <h3 class='text-center'>Please Choose a Lane</h3>
+  </div>
+</div>
+
+<div class='row'>
+  <div class='col-md-10 col-md-offset-1'>
+    <% @lanes.each do |lane| %>
+    <div class='col-md-6 '>
+      <div class='col-md-12 well well-sm'>
+        <h2 class='text-center green small-margin-top'><%= link_to "Lane #{lane.number}", admin_gun_range_lane_url(@gun_range,lane, date: @date) %> <span><%= link_to "Choose Lane", admin_gun_range_lane_url(@gun_range,lane, date: @date), class: 'btn btn-gtr-green' %></span></h2>
+        <% lane_timeslots(@date).each do |timeslot| %>
+            <%= render 'admin_mini_timeslots', timeslot: timeslot, lane: lane %>
+        <% end %>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>

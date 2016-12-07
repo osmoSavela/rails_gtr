@@ -1,0 +1,16 @@
+<%= form_tag master_checkin_url, method: 'get' do %>
+  <div class='row'>
+  <div class='col-md-8 col-md-offset-2'>
+    <div class="form-group no-pad">
+        <%= label_tag :last_name, "Enter Last Name" %>
+        <%= text_field_tag :last_name, nil, class: 'form-control' %>
+    </div>
+
+        <%= hidden_field_tag :reservation_id, nil, value: @reservation.id %>
+
+    <div class="form-group">
+      <%= submit_tag "Check In", class: 'btn btn-block btn-gtr-green' %>
+    </div>
+  </div>
+</div>
+<% end %>

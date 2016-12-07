@@ -1,0 +1,11 @@
+<p class='pricing-item border-bottom-white'><%= membership.range_hours %> Hours of Annual Free Range Time </p>
+					<p class='pricing-item border-bottom-white'><%= membership.training_discount %>% Training Course Discount <br>
+						<small class='gray'><em>Does not apply to CCW classes</em></small></p>
+					<p class='pricing-item border-bottom-white'><%= membership.annual_guest_passes %> Annual Guest Passes</p>
+					<p class='pricing-item border-bottom-white'><%= membership.private_instructor_discount %>% Private Instruction Discount</p>
+					<p class='pricing-item border-bottom-white'><%= membership.range_ammo_discount %>% Range Ammo and <%= membership.accessory_discount %>% Accessory Discount</p>
+					<p class='pricing-item'>
+						<% if membership.lounge_access %>
+							VIP Lounge Access
+						<% end %>
+					</p>
